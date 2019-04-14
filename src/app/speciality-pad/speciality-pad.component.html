@@ -1,0 +1,8 @@
+<div class="spec-list">
+<a *ngFor="let speciality of specialities"
+   routerLink="/speciality/{{speciality.name}}">
+  <div class="module">
+  <app-speciality-card [speciality]="speciality"></app-speciality-card>
+  </div>
+</a>
+</div>
