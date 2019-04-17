@@ -1,0 +1,23 @@
+<h1>Registration</h1>
+
+<div *ngIf="failed">passwords not match</div>
+
+<form (ngSubmit)="signUp()">
+
+  <div>
+    <label>Username</label>
+    <input type = "text" [(ngModel)]="username" name="username">
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type = "text" [(ngModel)]="password" name="password">
+  </div>
+
+  <div>
+    <label>Repeat password</label>
+    <input type = "text" [(ngModel)]="anotherPassword" name="password">
+  </div>
+
+  <button type="submit"> Sign up</button>
+</form>
