@@ -1,5 +1,5 @@
 <app-speciality-pad></app-speciality-pad>
-<button routerLink="/login"> Login </button>
-<button routerLink="/registration"> Registration </button>
-<button routerLink="/profile"> Profile </button>
+<button *ngIf="!user" routerLink="/login"> Login </button>
+<button *ngIf="!user" routerLink="/registration"> Registration </button>
+<button *ngIf="user" routerLink="/profile"> Profile </button>
 

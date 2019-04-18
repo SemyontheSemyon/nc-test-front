@@ -1,3 +1,7 @@
-<p>
-  profile works!
-</p>
+<div *ngIf="user.authority===1">
+  <app-profile-user [user]="user"></app-profile-user>
+</div>
+
+<div *ngIf="user.authority===3">
+  <app-profile-hr [user]="user"></app-profile-hr>
+</div>

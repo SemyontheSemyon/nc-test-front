@@ -1,0 +1,55 @@
+<div *ngIf="user.authority === 1">
+  <h2>Your Info</h2>
+
+  <form (ngSubmit)="updateUserInfo()">
+
+    <div>
+      <label>First Name</label>
+      <input type = "text" [(ngModel)]="userInfo.firstName" name="firstName">
+    </div>
+
+    <div>
+      <label>Last Name</label>
+      <input type = "text" [(ngModel)]="userInfo.lastName" name="lastName">
+    </div>
+
+    <div>
+      <label>Speciality</label>
+      <input type = "text" [(ngModel)]="userInfo.speciality" name="speciality">
+    </div>
+
+    <div>
+      <label>Phone</label>
+      <input type = "text" [(ngModel)]="userInfo.prone" name="prone">
+    </div>
+
+    <div>
+      <label>University</label>
+      <input type = "text" [(ngModel)]="userInfo.university" name="university">
+    </div>
+
+    <div>
+      <label>Department</label>
+      <input type = "text" [(ngModel)]="userInfo.department" name="department">
+    </div>
+
+    <div>
+      <label>Grade</label>
+      <input type = "text" [(ngModel)]="userInfo.grade" name="grade">
+    </div>
+
+    <div>
+      <label>City</label>
+      <input type = "text" [(ngModel)]="userInfo.city" name="city">
+    </div>
+
+
+    <button type="submit">Update Info</button>
+  </form>
+
+  <span *ngIf="pendingTest === 1">Test will be available from {{userInfo.testStart | date}}</span>
+  <a *ngIf="pendingTest === 2" routerLink="/test/start">You need to finish the test until {{userInfo.testEnd | date}}</a>
+  <span *ngIf="pendingTest === 3"> No tests available </span>
+
+
+</div>

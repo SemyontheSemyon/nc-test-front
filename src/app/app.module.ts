@@ -11,6 +11,14 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { RegistrationComponent } from './registration/registration.component';
 import {FormsModule} from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileUserComponent } from './profile-user/profile-user.component';
+import { TestQuestionHolderComponent } from './test-question-holder/test-question-holder.component';
+import { TestStartComponent } from './test-start/test-start.component';
+import { TestFinishComponent } from './test-finish/test-finish.component';
+import { ProfileHrComponent } from './profile-hr/profile-hr.component';
+import { EnrollmentPageComponent } from './enrollment-page/enrollment-page.component';
+import { StudentsListComponent } from './students-list/students-list.component';
+import { StudentInfoComponent } from './student-info/student-info.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +29,15 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     HomePageComponent,
     RegistrationComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileUserComponent,
+    TestQuestionHolderComponent,
+    TestStartComponent,
+    TestFinishComponent,
+    ProfileHrComponent,
+    EnrollmentPageComponent,
+    StudentsListComponent,
+    StudentInfoComponent
   ],
   imports: [
     BrowserModule,

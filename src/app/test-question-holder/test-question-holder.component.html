@@ -1,0 +1,32 @@
+<div *ngFor="let question of questions">
+
+
+
+  <p>{{question.text}}</p>
+  <form *ngIf="question.type === 'radio'">
+    <div *ngFor="let answer of question.answers">
+      <label for="{{answer}}_radio">
+        <input id="{{answer}}_radio" type="radio" name="answers" [value]="answer" [(ngModel)]="question.userAnswer">
+          {{answer}}
+      </label>
+    </div>
+   </form>
+
+  <form *ngIf="question.type === 'check'">
+    <div *ngFor="let answer of question.answers">
+      <label for="{{answer}}_check">
+        <input id="{{answer}}_check" type="checkbox" name="answers" [value]="answer" [(ngModel)]="question.userAnswer">
+        {{answer}}
+      </label>
+    </div>
+  </form>
+
+  <form *ngIf="question.type === 'free'">
+    <label for="answer_free">
+      <input id="answer_free" type="text" name="answers" [(ngModel)]="question.userAnswer">
+    </label>
+  </form>
+
+</div>
+
+<button (click)="submitQuestions()">Submit</button>

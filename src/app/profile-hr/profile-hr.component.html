@@ -1,0 +1,10 @@
+<a *ngFor="let ectf of ectfs" routerLink="/enrollment/{{ectf.enrollment.id}}">
+
+  <p>Speciality: {{ectf.enrollment.speciality}}</p>
+  <p>Application start: {{ectf.enrollment.appStart | date}} end: {{ectf.enrollment.appEnd | date}}</p>
+  <p>Test start: {{ectf.enrollment.testStart | date}} end: {{ectf.enrollment.testEnd | date}}</p>
+  <p>Created at: {{ectf.enrollment.createdAt | date}}</p>
+
+</a>
+
+<a routerLink="/students">List of students</a>

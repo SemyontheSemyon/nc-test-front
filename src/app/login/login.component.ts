@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../user';
-import {USER} from '../user-mock';
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
 import {UserSign} from '../user-sign';
@@ -17,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   user: User;
 
-  userSign: UserSign = new UserSign('q', 'w');
+  userSign: UserSign = new UserSign('', '');
 
   failed = false;
 
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   signIn() {
     this.userService.getUserFromBack(this.userSign).subscribe(user => this.user = user);
-    if ( this.user === null) { this.failed = true; } else { this.router.navigate(['/home']); }
+    if ( !this.user ) { this.failed = true; } else { this.router.navigate(['/home']); }
     console.log(this.userSign);
     console.log(this.user);
   }
