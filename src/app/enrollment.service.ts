@@ -19,4 +19,8 @@ export class EnrollmentService {
   getEnrollment(id: number): Observable<EnrollmentCityTestFormat> {
     return of(ECTF_MOCK.find(ectf => ectf.enrollment.id === id));
   }
+
+  updateEnrollment(ectf: EnrollmentCityTestFormat) {
+    console.log('enrollment updated');
+  }
 }

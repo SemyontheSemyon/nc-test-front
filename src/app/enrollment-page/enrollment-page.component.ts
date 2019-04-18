@@ -23,4 +23,8 @@ export class EnrollmentPageComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.enrollmentService.getEnrollment(id).subscribe(enrollment => this.ectf = enrollment);
   }
+
+  updateEnrollment() {
+    this.enrollmentService.updateEnrollment(this.ectf);
+  }
 }
