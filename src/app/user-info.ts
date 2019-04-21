@@ -1,12 +1,14 @@
 export class UserInfo {
+  studentStatus: string;
   firstName: string;
   lastName: string;
   city: string;
-  prone: string;
+  phone: string;
   grade: number;
   university: string;
   department: string;
   speciality: string;
   testStart: Date;
   testEnd: Date;
+  enrollmentId: number;
 }

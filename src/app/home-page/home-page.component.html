@@ -1,5 +1,8 @@
-<app-speciality-pad></app-speciality-pad>
-<button *ngIf="!user" routerLink="/login"> Login </button>
-<button *ngIf="!user" routerLink="/registration"> Registration </button>
-<button *ngIf="user" routerLink="/profile"> Profile </button>
-
+<app-header></app-header>
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to NetCracker Test System!</h1>
+  <p class="lead">Your first step towards joining our company</p>
+</div>
+<div class="container">
+  <app-speciality-pad></app-speciality-pad>
+</div>

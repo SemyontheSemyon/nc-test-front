@@ -11,17 +11,13 @@ import {EnrollmentCityTestFormat} from '../enrollment-city-test-format';
 })
 export class ProfileHrComponent implements OnInit {
 
-  constructor(private enrollmentService: EnrollmentService) { }
+  constructor(private enrollmentService: EnrollmentService) {
+  }
 
   @Input() user: User;
 
   ectfs: EnrollmentCityTestFormat[];
 
   ngOnInit() {
-    this.getEnrollments();
-  }
-
-  private getEnrollments() {
-    this.enrollmentService.getEnrollments().subscribe(enrollments => this.ectfs = enrollments);
   }
 }

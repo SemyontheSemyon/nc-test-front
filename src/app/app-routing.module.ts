@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
 import {SpecialityPageComponent} from './speciality-page/speciality-page.component';
 import {HomePageComponent} from './home-page/home-page.component';
@@ -14,9 +14,9 @@ import {StudentsListComponent} from './students-list/students-list.component';
 import {StudentInfoComponent} from './student-info/student-info.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'speciality/:name', component: SpecialityPageComponent},
   {path: 'home', component: HomePageComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'profile', component: ProfileComponent},
@@ -32,4 +32,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

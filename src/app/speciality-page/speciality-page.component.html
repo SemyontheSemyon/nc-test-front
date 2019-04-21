@@ -1,4 +1,31 @@
-<div class="spec-page">
-<h2>{{speciality.name}}</h2>
-<span>{{speciality.fullDescription}}</span>
+<app-header></app-header>
+<div class="container">
+
+  <img src="../../assets/img/{{speciality.name}}.jpg"
+       class="img-fluid p-4" alt="Responsive image">
+
+  <div class="row bg-light p-4">
+
+    <h1 class="mx-auto">{{speciality.name}}</h1>
+    <p class="text-justify ">{{speciality.fullDescription}}</p>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Pick your city
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button *ngFor="let city of cities" (click)="setCity(city)" class="dropdown-item">{{city}}</button>
+      </div>
+    </div>
+    <div *ngFor="let enrollment of (enrollments | enrollmentsCitySort: currentCity)" class="dropdown-item">
+      {{enrollment.city}}
+      <div *ngIf="!user">
+        <a class="btn btn-primary" routerLink="/login" role="button">Go to login page</a>
+      </div>
+      <div *ngIf="user">
+        <button (click)="enroll(enrollment)" class="btn btn-primary" type="submit">Enroll</button>
+      </div>
+    </div>
+  </div>
 </div>
+

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpecialityCardComponent } from './speciality-card/speciality-card.component';
 import { SpecialityPadComponent } from './speciality-pad/speciality-pad.component';
 import { SpecialityPageComponent } from './speciality-page/speciality-page.component';
 import { LoginComponent } from './login/login.component';
@@ -19,11 +18,12 @@ import { ProfileHrComponent } from './profile-hr/profile-hr.component';
 import { EnrollmentPageComponent } from './enrollment-page/enrollment-page.component';
 import { StudentsListComponent } from './students-list/students-list.component';
 import { StudentInfoComponent } from './student-info/student-info.component';
+import { HeaderComponent } from './header/header.component';
+import { EnrollmentsCitySortPipe } from './enrollments-city-sort.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpecialityCardComponent,
     SpecialityPadComponent,
     SpecialityPageComponent,
     LoginComponent,
@@ -37,7 +37,9 @@ import { StudentInfoComponent } from './student-info/student-info.component';
     ProfileHrComponent,
     EnrollmentPageComponent,
     StudentsListComponent,
-    StudentInfoComponent
+    StudentInfoComponent,
+    HeaderComponent,
+    EnrollmentsCitySortPipe
   ],
   imports: [
     BrowserModule,

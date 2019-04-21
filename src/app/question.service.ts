@@ -17,9 +17,5 @@ export class QuestionService {
     return this.questions;
   }
 
-  addQuestion(question: Question) {
-    console.log('question added');
-}
-
 
 }

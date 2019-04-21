@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import {User} from "./user";
-import {Observable, of} from "rxjs";
-import {USERS} from "./user-mock";
-import {UserSign} from "./user-sign";
+import {Injectable} from '@angular/core';
+import {User} from './user';
+import {Observable, of} from 'rxjs';
+import {USERS} from './user-mock';
+import {UserSign} from './user-sign';
 import {USER_INFO} from './user-info-mock';
 import {UserInfo} from './user-info';
 
@@ -13,14 +13,15 @@ export class UserService {
 
   user: User;
 
-  constructor() { }
+  constructor() {
+  }
 
   getUser(): User {
     return this.user;
   }
 
   getUserFromBack(userSign: UserSign): Observable<User> {
-    this.user = USERS.find(user => user.username === userSign.username);
+    this.user = USERS.find(user => user.email === userSign.username);
     return of(this.user);
   }
 
@@ -38,5 +39,13 @@ export class UserService {
 
   saveUserInfo(userInfo: UserInfo) {
     console.log('user info saved/updated' + userInfo);
+  }
+
+  updateStatus(userInfo: UserInfo) {
+    console.log('updated studentStatus to ' + userInfo.studentStatus);
+  }
+
+  setEnrollment(userInfo: UserInfo) {
+    console.log('user enrolled to enrollment with id ' + userInfo.enrollmentId);
   }
 }

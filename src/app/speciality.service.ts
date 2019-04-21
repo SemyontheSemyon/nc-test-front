@@ -1,15 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { Speciality } from './speciality';
-import { SPECIALITIES } from './speciality-mock';
+import {Speciality} from './speciality';
+import {SPECIALITIES} from './speciality-mock';
 import {Observable, of} from 'rxjs';
+import {CITIES} from './cities-mock';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpecialityService {
 
-  constructor() { }
+  cities: string[];
+
+  constructor() {
+  }
 
   getSpecialities(): Observable<Speciality[]> {
     return of(SPECIALITIES);
@@ -18,4 +22,9 @@ export class SpecialityService {
   getSpeciality(name: string): Observable<Speciality> {
     return of(SPECIALITIES.find(speciality => speciality.name === name));
   }
+
+  getCities(): Observable<string[]> {
+    return of(CITIES);
+  }
+
 }

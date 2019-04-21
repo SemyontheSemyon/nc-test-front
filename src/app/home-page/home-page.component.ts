@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {User} from '../user';
-import {ENROLLMENTS} from '../enrollment-mock';
 
 @Component({
   selector: 'app-home-page',
@@ -10,16 +9,10 @@ import {ENROLLMENTS} from '../enrollment-mock';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
-
-  user: User;
-
-  ngOnInit() {
-    this.getUser();
+  constructor() {
   }
 
-  getUser() {
-    this.user = this.userService.getUser();
+  ngOnInit() {
   }
 
 }
