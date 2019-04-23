@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../user';
-import {UserService} from '../user.service';
+import {TokenService} from '../token.service';
 
 @Component({
   selector: 'app-header',
@@ -11,17 +10,30 @@ export class HeaderComponent implements OnInit {
 
   title = 'NetCracker Test System';
 
-  currentUser: User;
+  private roles: string[];
+  private authority: string;
 
-  constructor(private userService: UserService) {
+  constructor(private tokenService: TokenService) {
   }
 
   ngOnInit() {
-    this.getUser();
+    if (this.tokenService.getToken()) {
+      this.roles = this.tokenService.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ROLE_ADMIN') {
+          this.authority = 'admin';
+          return false;
+        }
+        this.authority = 'user';
+        return true;
+      });
+    }
   }
 
-  getUser(): void {
-    this.currentUser = this.userService.getUser();
+  logout() {
+    this.tokenService.signOut();
+    window.location.reload();
   }
 
 }
+

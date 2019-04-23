@@ -5,15 +5,30 @@ import {USERS} from './user-mock';
 import {UserSign} from './user-sign';
 import {USER_INFO} from './user-info-mock';
 import {UserInfo} from './user-info';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private userUrl = 'http://localhost:8080/api/test/user';
+  private pmUrl = 'http://localhost:8080/api/test/pm';
+  private adminUrl = 'http://localhost:8080/api/test/admin';
 
   user: User;
 
-  constructor() {
+  constructor(private http: HttpClient) { }
+
+  getUserBoard(): Observable<string> {
+    return this.http.get(this.userUrl, { responseType: 'text' });
+  }
+
+  getPMBoard(): Observable<string> {
+    return this.http.get(this.pmUrl, { responseType: 'text' });
+  }
+
+  getAdminBoard(): Observable<string> {
+    return this.http.get(this.adminUrl, { responseType: 'text' });
   }
 
   getUser(): User {

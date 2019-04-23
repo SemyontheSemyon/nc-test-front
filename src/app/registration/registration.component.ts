@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {UserSign} from '../user-sign';
 import {Router} from '@angular/router';
+import {RegistrationInfo} from '../registration-info';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -10,23 +12,38 @@ import {Router} from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private userService: UserService,
-              private router: Router) { }
+  form: any = {};
+  registrationInfo: RegistrationInfo;
+  isRegistred = false;
+  isRegistrationFailed = false;
+  errorMessage = '';
 
-  username: string;
-  password: string;
-  anotherPassword: string;
-
-  failed = false;
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
   }
 
-  signUp() {
-    if (this.password === this.anotherPassword) {
-      this.userService.addUser(new UserSign(this.username, this.password));
-      this.router.navigate(['/home']);
-    } else { this.failed = true; }
-  }
+  onSubmit() {
+    console.log(this.form);
 
+    this.registrationInfo = new RegistrationInfo(
+      this.form.email,
+      this.form.password
+    );
+
+    this.authService.register(this.registrationInfo).subscribe(
+      data => {
+        console.log(data);
+        this.isRegistred = true;
+        this.isRegistrationFailed = false;
+        window.location.reload();
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+        this.isRegistrationFailed = true;
+      }
+    );
+  }
 }
