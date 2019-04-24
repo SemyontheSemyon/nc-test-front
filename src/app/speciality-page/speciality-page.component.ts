@@ -8,6 +8,7 @@ import {EnrollmentService} from '../enrollment.service';
 import {Enrollment} from '../enrollment';
 import {EnrollmentCityTestFormat} from '../enrollment-city-test-format';
 import {UserInfo} from '../user-info';
+import {TokenService} from '../token.service';
 
 @Component({
   selector: 'app-speciality-page',
@@ -17,30 +18,25 @@ import {UserInfo} from '../user-info';
 export class SpecialityPageComponent implements OnInit {
 
   speciality: Speciality;
-  user: User;
   userInfo: UserInfo;
-
-  currentCity: string;
 
   enrollments: Enrollment[];
   cities: string[];
 
+  currentCity: string;
+
   constructor(private specialityService: SpecialityService,
               private userService: UserService,
               private enrollmentService: EnrollmentService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private tokenService: TokenService) {
   }
 
   ngOnInit() {
     this.getEnrollments();
     this.getSpeciality();
     this.getCities();
-    this.getUser();
     this.getUserInfo();
-  }
-
-  getUser() {
-    this.user = this.userService.getUser();
   }
 
   getSpeciality() {
@@ -50,7 +46,10 @@ export class SpecialityPageComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.userService.getUserInfo().subscribe(userInfo => this.userInfo = userInfo);
+    this.userService.getUserInfo().subscribe(userInfo => {
+      this.userInfo = userInfo;
+      console.log(this.userInfo);
+    });
   }
 
   getCities() {
@@ -69,8 +68,8 @@ export class SpecialityPageComponent implements OnInit {
     if (this.userInfo.studentStatus !== 'Applied') {
       this.userInfo.studentStatus = 'Applied';
       this.userInfo.enrollmentId = enrollment.id;
-      this.userService.updateStatus(this.userInfo);
-      this.userService.setEnrollment(this.userInfo);
+      this.userService.saveUserInfo(this.userInfo).subscribe(data => console.log(data));
+      console.log(this.userInfo);
     }
   }
 }

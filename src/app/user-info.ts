@@ -1,5 +1,6 @@
 export class UserInfo {
   studentStatus: string;
+
   firstName: string;
   lastName: string;
   city: string;
@@ -8,7 +9,10 @@ export class UserInfo {
   university: string;
   department: string;
   speciality: string;
+
   testStart: Date;
   testEnd: Date;
+
   enrollmentId: number;
+
 }

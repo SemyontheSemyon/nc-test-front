@@ -41,14 +41,14 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginInfo).subscribe(
       data => {
-        this.tokenService.saveToken(data.accessToken);
+        console.log(data);
+        this.tokenService.saveToken(data.token);
         this.tokenService.saveUsername(data.username);
         this.tokenService.saveAuthorities(data.authorities);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenService.getAuthorities();
-        window.location.reload();
       },
       error => {
         console.log(error);

@@ -4,7 +4,7 @@
   <img src="../../assets/img/{{speciality.name}}.jpg"
        class="img-fluid p-4" alt="Responsive image">
 
-  <div class="row bg-light p-4">
+  <div class="row bg-light">
 
     <h1 class="mx-auto">{{speciality.name}}</h1>
     <p class="text-justify ">{{speciality.fullDescription}}</p>
@@ -19,10 +19,10 @@
     </div>
     <div *ngFor="let enrollment of (enrollments | enrollmentsCitySort: currentCity)" class="dropdown-item">
       {{enrollment.city}}
-      <div *ngIf="!user">
+      <div *ngIf="!userInfo">
         <a class="btn btn-primary" routerLink="/login" role="button">Go to login page</a>
       </div>
-      <div *ngIf="user">
+      <div *ngIf="userInfo">
         <button (click)="enroll(enrollment)" class="btn btn-primary" type="submit">Enroll</button>
       </div>
     </div>

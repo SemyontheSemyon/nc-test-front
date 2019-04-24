@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.tokenService.signOut();
+    this.authority = '';
     window.location.reload();
   }
 

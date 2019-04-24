@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from '../user';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {UserInfo} from '../user-info';
-import {Router} from '@angular/router';
+import {TokenService} from '../token.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,18 +10,34 @@ import {Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService,
-              private router: Router) { }
+  constructor(private userService: UserService) {
+  }
 
-  user: User;
+  userInfo: UserInfo;
+  testAvailable: boolean;
 
   ngOnInit() {
-    this.getUser();
-    if (!this.user) {this.router.navigate(['/login']); }
+    this.getUserInfo();
   }
 
-  getUser() {
-    this.user = this.userService.getUser();
+  getUserInfo() {
+    this.userService.getUserInfo().subscribe(userInfo => {
+      this.userInfo = userInfo;
+      console.log(this.userInfo);
+
+      const d = new Date().valueOf();
+      if (this.userInfo.testStart && this.userInfo.testEnd) {
+        if (this.userInfo.testStart.valueOf() > d && this.userInfo.testEnd.valueOf() < d) {
+          this.testAvailable = true;
+        }
+      }
+    });
   }
 
+  submitUserInfo() {
+    if (!this.userInfo.studentStatus) {
+      this.userInfo.studentStatus = 'Registred';
+    }
+    this.userService.saveUserInfo(this.userInfo).subscribe(data => console.log(data));
+  }
 }

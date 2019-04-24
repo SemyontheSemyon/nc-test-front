@@ -11,7 +11,6 @@ import {LoginComponent} from './login/login.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {ProfileComponent} from './profile/profile.component';
-import {ProfileUserComponent} from './profile-user/profile-user.component';
 import {TestQuestionHolderComponent} from './test-question-holder/test-question-holder.component';
 import {TestStartComponent} from './test-start/test-start.component';
 import {TestFinishComponent} from './test-finish/test-finish.component';
@@ -23,6 +22,7 @@ import {HeaderComponent} from './header/header.component';
 import {EnrollmentsCitySortPipe} from './enrollments-city-sort.pipe';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth-interceptor';
+import {CollapseModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import {AuthInterceptor} from './auth-interceptor';
     HomePageComponent,
     RegistrationComponent,
     ProfileComponent,
-    ProfileUserComponent,
     TestQuestionHolderComponent,
     TestStartComponent,
     TestFinishComponent,
@@ -48,7 +47,8 @@ import {AuthInterceptor} from './auth-interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CollapseModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
