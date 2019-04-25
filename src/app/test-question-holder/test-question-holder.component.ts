@@ -19,9 +19,8 @@ export class TestQuestionHolderComponent implements OnInit {
     this.questions = this.questionService.getQuestions();
   }
 
-  submitQuestions() {
-    console.log(this.questions[3].userAnswer);
-    console.log(this.questions[0].userAnswer);
+  submitAnswers() {
+    this.questionService.submitAnswers()
     this.router.navigate(['/test/finish']);
   }
 

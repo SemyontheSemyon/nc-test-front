@@ -17,5 +17,10 @@ export class QuestionService {
     return this.questions;
   }
 
+  submitAnswers() {
+
+  }
+  //TODO: submit answers
+
 
 }

@@ -23,6 +23,7 @@ import {EnrollmentsCitySortPipe} from './enrollments-city-sort.pipe';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth-interceptor';
 import {CollapseModule} from 'ngx-bootstrap';
+import {ProfileUserComponent} from './profile-user/profile-user.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {CollapseModule} from 'ngx-bootstrap';
     TestQuestionHolderComponent,
     TestStartComponent,
     TestFinishComponent,
+    ProfileUserComponent,
     ProfileHrComponent,
     EnrollmentPageComponent,
     StudentsListComponent,

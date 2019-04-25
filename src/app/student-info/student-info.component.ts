@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserInfo} from '../user-info';
 import {UserService} from '../user.service';
+import {TestService} from '../test.service';
+import {Question} from '../question';
 
 @Component({
   selector: 'app-student-info',
@@ -11,7 +13,10 @@ export class StudentInfoComponent implements OnInit {
 
   userInfo: UserInfo;
 
-  constructor(private userService: UserService) { }
+  testInfo: Question[] = [];
+
+  constructor(private userService: UserService,
+              private testService: TestService) { }
 
   ngOnInit() {
     this.getUserInfo();
@@ -19,6 +24,10 @@ export class StudentInfoComponent implements OnInit {
 
   getUserInfo() {
     this.userService.getUserInfo().subscribe(userInfo => this.userInfo = userInfo);
+  }
+
+  getTestInfo() {
+
   }
 
 }

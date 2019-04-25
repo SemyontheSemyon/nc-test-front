@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {UserInfo} from '../user-info';
 import {User} from '../user';
+import {CITIES} from '../cities-mock';
 
 @Component({
   selector: 'app-profile-user',
@@ -10,32 +11,22 @@ import {User} from '../user';
 })
 export class ProfileUserComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor() { }
 
-  @Input() user: User;
-
-  userInfo: UserInfo;
-
-  pendingTest: number;
+  userInfo = {};
+  cities: string[] = CITIES;
+  specialities: string[];
 
   ngOnInit() {
-    this.getUserInfo();
-    this.getTestStatus();
+  }
+
+  onSubmit() {
+    console.log(this.userInfo);
   }
 
   getUserInfo() {
-    this.userService.getUserInfo().subscribe(userInfo => this.userInfo = userInfo);
+
   }
 
-  updateUserInfo() {
-    this.userService.saveUserInfo(this.userInfo);
-  }
-
-  getTestStatus() {
-    const d = new Date().valueOf();
-    if (this.userInfo.testStart.valueOf() > d) { this.pendingTest = 1;
-    } else if ( this.userInfo.testEnd.valueOf() < d) { this.pendingTest = 3;
-    } else  { this.pendingTest = 2; }
-  }
 
 }

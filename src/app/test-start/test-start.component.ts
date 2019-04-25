@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TestService} from '../test.service';
+import {TestFormat} from '../test-format';
 
 @Component({
   selector: 'app-test-start',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestStartComponent implements OnInit {
 
-  constructor() { }
+  testFormat = {};
+
+  constructor(private testService: TestService) { }
 
   ngOnInit() {
+    this.getTestFormat();
+  }
+
+  getTestFormat() {
+    this.testService.getTestFormat();
   }
 
 }

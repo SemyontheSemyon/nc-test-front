@@ -1,32 +1,43 @@
+<app-header></app-header>
+<div class="jumbotron">
+  <h1 class="display-4">Test</h1>
+  <p class="lead">Questions</p>
+</div>
+<div class="col-sm-6">
 <div *ngFor="let question of questions">
 
-
-
   <p>{{question.text}}</p>
-  <form *ngIf="question.type === 'radio'">
+
+  <form *ngIf="question.type === 'radio'" style="max-width:40em">
+
+    <div class="form-group">
     <div *ngFor="let answer of question.answers">
-      <label for="{{answer}}_radio">
-        <input id="{{answer}}_radio" type="radio" name="answers" [value]="answer" [(ngModel)]="question.userAnswer">
-          {{answer}}
-      </label>
+      <div class="input-group">
+      <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="radio" name="answers" [value]="answer" [(ngModel)]="question.userAnswer">
+      </div>
+      </div>
+      <span class="form-control">{{answer}}</span>
+      </div>
     </div>
+    </div>
+
    </form>
 
-  <form *ngIf="question.type === 'check'">
-    <div *ngFor="let answer of question.answers">
-      <label for="{{answer}}_check">
-        <input id="{{answer}}_check" type="checkbox" name="answers" [value]="answer" [(ngModel)]="question.userAnswer">
-        {{answer}}
-      </label>
-    </div>
-  </form>
 
-  <form *ngIf="question.type === 'free'">
+  <form *ngIf="question.type === 'free'" style="width:60em">
+    <div class="form-group">
+      <div class="input-group mb-3">
     <label for="answer_free">
-      <input id="answer_free" type="text" name="answers" [(ngModel)]="question.userAnswer">
+      <input id="answer_free" class="form-control" type="text" name="answers" style="width:60em; height: 10em" [(ngModel)]="question.userAnswer">
     </label>
+      </div>
+    </div>
   </form>
 
 </div>
 
-<button (click)="submitQuestions()">Submit</button>
+
+<button class="btn-primary" (click)="submitAnswers()">Submit</button>
+</div>
