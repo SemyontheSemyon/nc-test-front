@@ -1,0 +1,66 @@
+<app-header></app-header>
+
+<div class="jumbotron">
+  <h1 class="display-4">Add a new question</h1>
+</div>
+
+<div class="col-sm-6" style="width:50em;">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <span class="input-group-text" style="width:8em">Question type</span>
+        <select class="custom-select" style="max-width:22em" name="type" [(ngModel)]="question.type" #type="ngModel"
+                required>
+          <option *ngFor="let type of types">{{type}}</option>
+        </select>
+        <div *ngIf="f.submitted && type.invalid">
+          <div *ngIf="type.errors.required" class="input-group-text alert-danger">Question type is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <span class="input-group-text" style="width:8em">Speciality</span>
+        <select class="custom-select" style="max-width:22em" name="speciality" [(ngModel)]="question.speciality" #speciality="ngModel"
+                required>
+          <option *ngFor="let speciality of specialities">{{speciality}}</option>
+        </select>
+        <div *ngIf="f.submitted && type.invalid">
+          <div *ngIf="speciality.errors.required" class="input-group-text alert-danger">Speciality is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <span style="width:8em">Question text</span>
+        <input type="text" class="form-control" height="10em" name="text" [(ngModel)]="question.text" #text="ngModel"
+               required/>
+        <div *ngIf="f.submitted && text.invalid">
+          <div *ngIf="text.errors.required" class="input-group-text alert-danger">Text is required</div>
+        </div>
+    </div>
+
+    <div *ngIf="question.type === 'radio'">
+      <span> Answers </span>
+      <div *ngFor="let answer of question.answers">
+        <input type="text" class="form-control" [(ngModel)]="answer"/>
+      </div>
+      <button (click)="addAnswer()" class="btn-primary"> Add answer </button>
+    </div>
+
+    <div class="form-group">
+      <span> Correct answer </span>
+      <input type="text" class="form-control" height="10em" name="correctAnswer" [(ngModel)]="question.correctAnswer" #correct="ngModel"
+             required/>
+      <div *ngIf="f.submitted && correct.invalid">
+        <div *ngIf="correct.errors.required" class="input-group-text alert-danger">Correct answer is required</div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-primary" (click)="addQuestion()"> Add question </button>
+
+
+
+  </form>

@@ -13,6 +13,8 @@ import {EnrollmentPageComponent} from './enrollment-page/enrollment-page.compone
 import {StudentsListComponent} from './students-list/students-list.component';
 import {StudentInfoComponent} from './student-info/student-info.component';
 import {ProfileUserComponent} from './profile-user/profile-user.component';
+import {ProfileHrComponent} from './profile-hr/profile-hr.component';
+import {QuestionCreateComponent} from './question-create/question-create.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -27,7 +29,9 @@ const routes: Routes = [
   {path: 'enrollment/:id', component: EnrollmentPageComponent},
   {path: 'students', component: StudentsListComponent},
   {path: 'student/:id', component: StudentInfoComponent},
-  {path: 'profile_user', component: ProfileUserComponent}
+  {path: 'profile_user', component: ProfileUserComponent},
+  {path: 'profile_hr', component: ProfileHrComponent},
+  {path: 'question/new', component: QuestionCreateComponent}
 ];
 
 @NgModule({

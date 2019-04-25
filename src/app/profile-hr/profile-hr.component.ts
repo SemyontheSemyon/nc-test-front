@@ -3,6 +3,7 @@ import {User} from '../user';
 import {EnrollmentService} from '../enrollment.service';
 import {Enrollment} from '../enrollment';
 import {EnrollmentCityTestFormat} from '../enrollment-city-test-format';
+import {ECTF_MOCK} from '../ectf-mock';
 
 @Component({
   selector: 'app-profile-hr',
@@ -14,9 +15,7 @@ export class ProfileHrComponent implements OnInit {
   constructor(private enrollmentService: EnrollmentService) {
   }
 
-  @Input() user: User;
-
-  ectfs: EnrollmentCityTestFormat[];
+  ectfs: EnrollmentCityTestFormat[] = ECTF_MOCK;
 
   ngOnInit() {
   }

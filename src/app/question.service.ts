@@ -20,7 +20,10 @@ export class QuestionService {
   submitAnswers() {
 
   }
-  //TODO: submit answers
+
+  addQuestion(question: Question) {
+  }
+  //TODO: question service
 
 
 }

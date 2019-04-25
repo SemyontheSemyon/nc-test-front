@@ -24,6 +24,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth-interceptor';
 import {CollapseModule} from 'ngx-bootstrap';
 import {ProfileUserComponent} from './profile-user/profile-user.component';
+import {QuestionCreateComponent} from './question-create/question-create.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {ProfileUserComponent} from './profile-user/profile-user.component';
     StudentsListComponent,
     StudentInfoComponent,
     HeaderComponent,
+    QuestionCreateComponent,
     EnrollmentsCitySortPipe
   ],
   imports: [
