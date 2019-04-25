@@ -15,6 +15,7 @@ import {StudentInfoComponent} from './student-info/student-info.component';
 import {ProfileUserComponent} from './profile-user/profile-user.component';
 import {ProfileHrComponent} from './profile-hr/profile-hr.component';
 import {QuestionCreateComponent} from './question-create/question-create.component';
+import {EnrollmentCreateComponent} from './enrollment-create/enrollment-create.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,12 +27,12 @@ const routes: Routes = [
   {path: 'test/start', component: TestStartComponent},
   {path: 'test/inprogress', component: TestQuestionHolderComponent},
   {path: 'test/finish', component: TestFinishComponent},
-  {path: 'enrollment/:id', component: EnrollmentPageComponent},
   {path: 'students', component: StudentsListComponent},
   {path: 'student/:id', component: StudentInfoComponent},
   {path: 'profile_user', component: ProfileUserComponent},
   {path: 'profile_hr', component: ProfileHrComponent},
-  {path: 'question/new', component: QuestionCreateComponent}
+  {path: 'question/new', component: QuestionCreateComponent},
+  {path: 'enrollment/new', component: EnrollmentCreateComponent}
 ];
 
 @NgModule({

@@ -25,6 +25,8 @@ import {AuthInterceptor} from './auth-interceptor';
 import {CollapseModule} from 'ngx-bootstrap';
 import {ProfileUserComponent} from './profile-user/profile-user.component';
 import {QuestionCreateComponent} from './question-create/question-create.component';
+import { EnrollmentCreateComponent } from './enrollment-create/enrollment-create.component';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -45,14 +47,16 @@ import {QuestionCreateComponent} from './question-create/question-create.compone
     StudentInfoComponent,
     HeaderComponent,
     QuestionCreateComponent,
-    EnrollmentsCitySortPipe
+    EnrollmentsCitySortPipe,
+    EnrollmentCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    CollapseModule
+    CollapseModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
