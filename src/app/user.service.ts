@@ -2,20 +2,17 @@ import {Injectable} from '@angular/core';
 import {User} from './user';
 import {Observable, of} from 'rxjs';
 import {USERS} from './user-mock';
-import {UserSign} from './user-sign';
-import {USER_INFO} from './user-info-mock';
 import {UserInfo} from './user-info';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {LoginInfo} from './login-info';
-import {JwtResponse} from './jwt-response';
-import {TokenService} from './token.service';
+import {LOCALHOST} from './localhost';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private localhostURL = LOCALHOST;
 
-  private userInfoUrl = 'http://localhost:8080/api/profile';
+  private userInfoUrl = LOCALHOST + 'api/profile';
 
   constructor(private http: HttpClient) {
   }
