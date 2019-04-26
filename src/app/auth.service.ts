@@ -4,14 +4,17 @@ import {Observable} from 'rxjs';
 import {LoginInfo} from './login-info';
 import {RegistrationInfo} from './registration-info';
 import {JwtResponse} from './jwt-response';
+import {LOCALHOST} from './localhost';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/api/auth/login';
-  private registerUrl = 'http://localhost:8080/api/auth/registration';
+  private localhostURL = LOCALHOST;
+
+  private loginUrl = this.localhostURL + 'api/auth/login';
+  private registerUrl = this.localhostURL + 'api/auth/registration';
 
   constructor(private http: HttpClient) {
   }

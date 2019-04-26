@@ -15,7 +15,7 @@
 
    <div class="form-group">
      <div class="input-group mb-3">
-       <span class="input-group-text" style="width:20em">City</span>
+       <span class="input-group-text" style="width:15em">City</span>
        <select class="custom-select" style="max-width:16em" name="city" [(ngModel)]="enrollment.city" #city="ngModel"
                required>
          <option *ngFor="let city of cities">{{city}}</option>
@@ -85,7 +85,7 @@
 
    <div class="form-group">
      <div class="input-group mb-3">
-       <span class="input-group-text" style="width:20em;">Number of questions in test</span>
+       <span class="input-group-text" style="width:15em;">Number of questions in test</span>
        <input type="text" class="form-control" style="max-width: 16em" name="numberOfQuestions" [(ngModel)]="enrollment.numberOfQuestions" #numberOfQuestions="ngModel" required/>
        <div *ngIf="f.submitted && numberOfQuestions.invalid">
          <div *ngIf="numberOfQuestions.errors.required" class="input-group-text alert-danger">Number of questions is required</div>
@@ -95,7 +95,7 @@
 
    <div class="form-group">
      <div class="input-group mb-3">
-       <span class="input-group-text" style="width:20em;">Time for test</span>
+       <span class="input-group-text" style="width:15em;">Time for test</span>
        <input type="text" class="form-control" style="max-width: 16em" name="testTime" [(ngModel)]="enrollment.testTime" #testTime="ngModel" required/>
        <div *ngIf="f.submitted && testTime.invalid">
          <div *ngIf="testTime.errors.required" class="input-group-text alert-danger">Test time is required</div>
