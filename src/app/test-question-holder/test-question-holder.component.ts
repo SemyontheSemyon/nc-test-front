@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {QuestionService} from '../question.service';
 import {Question} from '../question';
 import {Router} from '@angular/router';
+import {TestService} from '../test.service';
 
 @Component({
   selector: 'app-test-question-holder',
@@ -10,17 +11,18 @@ import {Router} from '@angular/router';
 })
 export class TestQuestionHolderComponent implements OnInit {
 
-  constructor(private questionService: QuestionService,
+  constructor(private testService: TestService,
+              private questionService: QuestionService,
               private router: Router) { }
 
-  questions: Question[];
+  questions: Question[] = [];
 
   ngOnInit() {
-    this.questions = this.questionService.getQuestions();
+    this.testService.getQuestions().subscribe(questions => this.questions = questions);
   }
 
   submitAnswers() {
-    this.questionService.submitAnswers()
+    this.testService.sendAnswers(this.questions);
     this.router.navigate(['/test/finish']);
   }
 

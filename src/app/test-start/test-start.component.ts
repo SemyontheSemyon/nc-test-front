@@ -9,7 +9,7 @@ import {TestFormat} from '../test-format';
 })
 export class TestStartComponent implements OnInit {
 
-  testFormat = {};
+  testFormat: TestFormat;
 
   constructor(private testService: TestService) { }
 
