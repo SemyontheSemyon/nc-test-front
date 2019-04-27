@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CITIES} from '../cities-mock';
 import {EnrollmentService} from '../enrollment.service';
+import {CityService} from '../city.service';
+import {TokenService} from '../token.service';
 
 @Component({
   selector: 'app-enrollment-create',
@@ -15,9 +17,13 @@ export class EnrollmentCreateComponent implements OnInit {
 
   cities: string[] = CITIES;
 
-  constructor(private enrollmentService: EnrollmentService) { }
+  constructor(private enrollmentService: EnrollmentService,
+              private cityService: CityService,
+              private tokenService: TokenService) { }
 
   ngOnInit() {
+    this.tokenService.checkAuthorities('ROLE_MANAGER');
+    this.cityService.getCities().subscribe(cities => this.cities = cities);
   }
 
   onSubmit() {
