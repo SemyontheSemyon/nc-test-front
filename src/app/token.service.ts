@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
   private roles: Array<string> = [];
-  constructor() { }
+  constructor(private router: Router) { }
 
   signOut() {
     window.sessionStorage.clear();
@@ -38,11 +39,19 @@ export class TokenService {
     this.roles = [];
 
     if (sessionStorage.getItem('AuthToken')) {
-      JSON.parse(sessionStorage.getItem('AuthAuthorities')).forEach(authority => {
-        this.roles.push(authority.authority);
-      });
+      const q: string[] = JSON.parse(sessionStorage.getItem('AuthAuthorities'));
+      if (q) {
+        q.forEach(authority => this.roles.push(authority));
+      }
     }
 
     return this.roles;
+  }
+
+  checkAuthorities(authority: string) {
+    const roles = this.getAuthorities();
+    if (roles.find(role => role === authority) === undefined) {
+      this.router.navigate(['/home']);
+    }
   }
 }

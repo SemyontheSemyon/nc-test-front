@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {QuestionService} from '../question.service';
 import {Question} from '../question';
-import {CITIES} from '../cities-mock';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {TokenService} from '../token.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-question-create',
@@ -17,15 +17,18 @@ export class QuestionCreateComponent implements OnInit {
 
   question: Question = new Question();
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService,
+              private tokenService: TokenService) { }
 
   ngOnInit() {
+    this.tokenService.checkAuthorities('ROLE_MANAGER');
     this.question.answers = [''];
   }
 
   addAnswer() {
-      this.question.answers.push('');
-      console.log(this.question.answers);
+    if (this.question.answers[this.question.answers.length - 1] !== '') {
+    this.question.answers.push('');
+    console.log(this.question.answers); }
   }
 
   addQuestion() {
