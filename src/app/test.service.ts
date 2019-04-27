@@ -1,14 +1,35 @@
 import { Injectable } from '@angular/core';
+import {LOCALHOST} from './localhost';
+import {Observable} from 'rxjs';
+import {TestFormat} from './test-format';
+import {HttpClient} from '@angular/common/http';
+import {Question} from './question';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
 
-  constructor() { }
+  localhost = LOCALHOST;
 
-  getTestFormat() {}
+  testURL = this.localhost + 'api/test/';
+  testFormatURL = this.testURL + 'test_format';
+  questionURL = this.testURL + 'questions';
 
-  getTestInfo() {}
-  //TODO: test service
+
+  constructor(private http: HttpClient) {
+  }
+
+  getTestFormat(): Observable<TestFormat> {
+    return this.http.get<TestFormat>(this.testFormatURL);
+  }
+
+  getQuestions(): Observable<Question[]> {
+    return this.http.get<Question[]>(this.questionURL);
+  }
+
+  sendAnswers(questions: Question[]) {
+    return this.http.post<Question[]>(this.testURL, questions);
+  }
 }
+

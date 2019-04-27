@@ -103,6 +103,16 @@
      </div>
    </div>
 
+   <div class="form-group">
+     <div class="input-group mb-3">
+       <span class="input-group-text" style="width:15em;">Test threshold</span>
+       <input type="text" class="form-control" style="max-width: 16em" name="testTime" [(ngModel)]="enrollment.testTime" #testTime="ngModel" required/>
+       <div *ngIf="f.submitted && testTime.invalid">
+         <div *ngIf="testTime.errors.required" class="input-group-text alert-danger">Test time is required</div>
+       </div>
+     </div>
+   </div>
+
    <button class="btn-primary">Submit</button>
  </form>
 
