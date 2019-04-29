@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {QuestionService} from '../question.service';
 import {Question} from '../question';
 import {TokenService} from '../token.service';
@@ -15,14 +15,15 @@ export class QuestionCreateComponent implements OnInit {
 
   specialities: string[] = ['BA', 'QA', 'DEV'];
 
-  question: Question = new Question();
+  @Input() editing = false;
+
+  @Input() question: Question = new Question();
 
   constructor(private questionService: QuestionService,
               private tokenService: TokenService) { }
 
   ngOnInit() {
-    this.tokenService.checkAuthorities('ROLE_MANAGER');
-    this.question.answers = [''];
+    if (this.question.answers === undefined) this.question.answers = [''];
   }
 
   addAnswer() {
@@ -32,9 +33,13 @@ export class QuestionCreateComponent implements OnInit {
   }
 
   addQuestion() {
-    this.question.answers = this.question.answers.slice(0, this.question.answers.length - 1);
+    this.question.answers = this.question.answers.filter(answer => answer !== '');
     console.log(this.question);
     this.questionService.addQuestion(this.question);
+  }
+
+  removeQuestion(i: number) {
+    this.question.answers = this.question.answers.filter(((value, index) => index !== i));
   }
 
 }

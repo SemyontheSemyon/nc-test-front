@@ -11,15 +11,13 @@ import {HttpClient} from '@angular/common/http';
 export class QuestionService {
 
   localhostURL = LOCALHOST;
-  questionURL = this.localhostURL + 'api/question';
+  questionURL = this.localhostURL + 'api/question/';
 
-  questions: Question[] = [];
 
   constructor(private http: HttpClient) { }
 
-  getQuestions(): Question[] {
-    if (this.questions.length === 0) { of(QUESTIONS).subscribe(questions => this.questions = questions); }
-    return this.questions;
+  getQuestions(speciality: string): Observable<Question[]> {
+    return this.http.get<Question[]>(this.questionURL + speciality);
   }
 
   submitAnswers() {
@@ -28,6 +26,10 @@ export class QuestionService {
 
   addQuestion(question: Question) {
     this.http.post<Question>(this.questionURL, question);
+  }
+
+  deleteQuestion(questionId: number) {
+    this.http.delete(this.questionURL + questionId);
   }
 
 
