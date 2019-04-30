@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {TestService} from '../test.service';
 import {TestFormat} from '../test-format';
+import {UserInfo} from '../user-info';
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-test-start',
@@ -10,11 +13,18 @@ import {TestFormat} from '../test-format';
 export class TestStartComponent implements OnInit {
 
   testFormat: TestFormat;
+  userInfo: UserInfo;
 
-  constructor(private testService: TestService) { }
+  constructor(private testService: TestService,
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getTestFormat();
+    this.userService.getUserInfo().subscribe(userInfo => {
+      this.userInfo = userInfo;
+      if (userInfo.studentStatus !== 'Registred') {this.router.navigate(['/home']); }
+    });
   }
 
   getTestFormat() {
