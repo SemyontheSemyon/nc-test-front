@@ -54,7 +54,7 @@
             </div>
           <input  type="text" class="form-control" style="max-width: 20em;" name="{{answer}}{{i}}" [ngModel]="answer" (focusout)="question.answers[i] = box.value;" #box/>
           <div class="input-group-append">
-            <button type="button" class="btn-primary" (click)="removeQuestion(i)">X</button>
+            <button type="button" class="btn btn-primary" (click)="removeQuestion(i)">X</button>
           </div>
           <div *ngIf="f.submitted && correct.invalid">
             <div *ngIf="(correct.errors.required || correct.errors.minlength) && i !== question.answers.length-1" class="input-group-text alert-danger">Correct answer is required</div>
@@ -62,7 +62,7 @@
         </div>
 
       </div>
-        <button type="button" class="btn-primary" (click)="addAnswer()">New answer</button>
+        <button type="button" class="btn btn-primary" (click)="addAnswer()">New answer</button>
     </div>
     </div>
 
@@ -70,8 +70,8 @@
     <div class="form-group">
       <div class="input-group mb-3">
       <span class="input-group-text" style="width: 9em">Correct answer</span>
-      <input type="text" class="form-control" style="max-width: 35em" name="correctAnswer" [(ngModel)]="question.correctAnswer" #correct="ngModel"
-             required/>
+      <input type="text" class="form-control" style="max-width: 35em" name="correctAnswer" [(ngModel)]="question.correctAnswer" (focusout)="question.answers[0] = box.value" #correct="ngModel"
+             required #box/>
       <div *ngIf="f.submitted && correct.invalid">
         <div *ngIf="correct.errors.required" class="input-group-text alert-danger">Correct answer is required</div>
       </div>
@@ -79,7 +79,7 @@
     </div>
     </div>
 
-    <button type="submit" class="btn-primary"> Submit </button>
+    <button type="submit" class="btn btn-primary"> Submit </button>
 
 
 

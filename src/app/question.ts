@@ -4,6 +4,6 @@ export class Question {
   type: string;
   answers: string[];
   correctAnswer?: string;
-  userAnswer?: string;
+  studentAnswer?: string;
   speciality?: string;
 }

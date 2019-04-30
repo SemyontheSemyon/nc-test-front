@@ -13,7 +13,7 @@
         <select class="custom-select" style="max-width: 10em" name="speciality" [(ngModel)]="selectedSpeciality" #speciality="ngModel" required>
           <option *ngFor="let speciality of specialities">{{speciality}}</option>
         </select>
-        <button class="btn-primary">Get questions</button>
+        <button class="btn btn-primary">Get questions</button>
       </div>
     </div>
   </form>
@@ -32,8 +32,8 @@
     <span class="form-control" style="max-width: 4.1em">{{question.type}}</span>
     <span class="form-control" style="max-width: 30em">{{question.text}}</span>
     <span class="form-control" style="max-width: 13.1em">{{question.correctAnswer}}</span>
-    <button class="btn-primary" data-toggle="collapse" [attr.data-target]="'#collapse' + i">Edit</button>
-    <button class="btn-primary" (click)="removeQuestion(question.id)">X</button>
+    <button class="btnbtn-primary" data-toggle="collapse" [attr.data-target]="'#collapse' + i">Edit</button>
+    <button class="btn btn-primary" (click)="removeQuestion(question.id)">X</button>
   </div>
 
     <div class="collapse" id="collapse{{i}}">
@@ -47,7 +47,7 @@
 </div>
 
     <div class="col">
-      <button class="btn-primary" data-toggle="collapse" [attr.data-target]="'#newQuestion'">Add new question</button>
+      <button class="btn btn-primary" data-toggle="collapse" [attr.data-target]="'#newQuestion'">Add new question</button>
       <div class="collapse" id="newQuestion">
     <app-question-create class="card card-body"></app-question-create>
       </div>
