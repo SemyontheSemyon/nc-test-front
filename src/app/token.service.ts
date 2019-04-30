@@ -35,11 +35,11 @@ export class TokenService {
     window.sessionStorage.setItem('AuthAuthorities', JSON.stringify(authorities));
   }
 
-  public getAuthorities(): string[] {
+  public getAuthorities(): any[] {
     this.roles = [];
 
     if (sessionStorage.getItem('AuthToken')) {
-      const q: string[] = JSON.parse(sessionStorage.getItem('AuthAuthorities'));
+      const q = JSON.parse(sessionStorage.getItem('AuthAuthorities'));
       if (q) {
         q.forEach(authority => this.roles.push(authority));
       }
@@ -50,7 +50,7 @@ export class TokenService {
 
   checkAuthorities(authority: string) {
     const roles = this.getAuthorities();
-    if (roles.find(role => role === authority) === undefined) {
+    if (roles.find(role => role.authority === authority) === undefined) {
       this.router.navigate(['/home']);
     }
   }

@@ -6,9 +6,11 @@
 
 <div class="col-sm-6">
 
-<p class="text-body">Number of questions in test - {{testFormat.numberOfQuestions}}</p>
+  <div class="card card-body">
+<p class="text-primary">Number of questions in test - {{testFormat.numberOfQuestions}}</p>
 
-  <p class="text-body">Test threshold - {{testFormat.threshold}}</p>
+  <p class="text-primary">To pass the test you need to have {{testFormat.threshold}} correct answers</p>
+  </div>
 
 <button class="btn btn-primary" routerLink="/test/inprogress"> Begin test </button>
 

@@ -25,11 +25,11 @@ export class QuestionService {
   }
 
   addQuestion(question: Question) {
-    this.http.post<Question>(this.questionURL, question);
+    this.http.post<Question>(this.questionURL, question).subscribe();
   }
 
   deleteQuestion(questionId: number) {
-    this.http.delete(this.questionURL + questionId);
+    this.http.delete(this.questionURL + questionId).subscribe(response => console.log(response));
   }
 
 

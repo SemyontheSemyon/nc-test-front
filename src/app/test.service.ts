@@ -13,7 +13,6 @@ export class TestService {
   localhost = LOCALHOST;
 
   testURL = this.localhost + 'api/test/';
-  testFormatURL = this.testURL + 'test_format';
   questionURL = this.testURL + 'questions';
 
 
@@ -21,7 +20,7 @@ export class TestService {
   }
 
   getTestFormat(): Observable<TestFormat> {
-    return this.http.get<TestFormat>(this.testFormatURL);
+    return this.http.get<TestFormat>(this.testURL);
   }
 
   getQuestions(): Observable<Question[]> {

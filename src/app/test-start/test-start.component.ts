@@ -18,7 +18,8 @@ export class TestStartComponent implements OnInit {
   }
 
   getTestFormat() {
-    this.testService.getTestFormat();
+    this.testService.getTestFormat().subscribe(testFormat => this.testFormat = testFormat);
+    console.log(this.testFormat);
   }
 
 }
