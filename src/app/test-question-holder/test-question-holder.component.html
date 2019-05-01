@@ -3,6 +3,8 @@
   <h1 class="display-4">Test</h1>
   <p class="lead">Questions</p>
 </div>
+<div class="container-fluid">
+<div class="row">
 <div class="col-sm-6">
   <form name="form" (ngSubmit)="f.valid && submitAnswers()" #f="ngForm">
 <div *ngFor="let question of questions; index as i" class="card card-body">
@@ -12,7 +14,7 @@
   <div *ngIf="question.type === 'free'">
 
     <div class="input-group">
-    <textarea type="text" class="form-control" style="max-width: 35em" name="text" [(ngModel)]="question.studentAnswer"></textarea>
+    <textarea type="text" class="form-control" style="max-width: 35em" name="text" [(ngModel)]="answers[i].studentAnswer"></textarea>
     </div>
 
   </div>
@@ -23,7 +25,7 @@
 
       <div class="input-group">
         <div class="input-group-text">
-      <input type="radio" name="{{i}}" [(ngModel)]="questions[i].studentAnswer" [value]="answer">
+      <input type="radio" name="{{i}}" [(ngModel)]="answers[i].studentAnswer" [value]="answer">
         </div>
         <span class="form-control" style="max-width: 30em">{{answer}}</span>
       </div>
@@ -46,4 +48,11 @@
 
 
 
+</div>
+<div class="col">
+  <div class="card card-body" style="max-width: 15em">
+  <span class="input-group-lg input-group-text alert-danger">Time left {{testTime.mins}}:{{testTime.secs}}</span>
+  </div>
+</div>
+</div>
 </div>

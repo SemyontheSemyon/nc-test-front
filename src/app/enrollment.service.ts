@@ -13,7 +13,7 @@ import {LOCALHOST} from './localhost';
 export class EnrollmentService {
 
   localhostURL = LOCALHOST;
-  enrollmentURL = this.localhostURL + 'api/enrollment';
+  enrollmentURL = this.localhostURL + 'api/enrollment/';
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +26,14 @@ export class EnrollmentService {
   }
 
   addEnrollment(enrollment: any) {
-    this.http.post(this.enrollmentURL, enrollment);
+    this.http.post(this.enrollmentURL, enrollment).subscribe();
+  }
+
+  getAllEnrollments(city: string): Observable<object[]> {
+    return this.http.get<object[]>(this.enrollmentURL + city);
+  }
+
+  deleteEnrollment(id: number) {
+    this.http.delete(this.enrollmentURL + id).subscribe();
   }
 }

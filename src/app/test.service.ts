@@ -28,7 +28,7 @@ export class TestService {
   }
 
   sendAnswers(questions: Question[]) {
-    return this.http.post<Question[]>(this.testURL, questions);
+    return this.http.post<Question[]>(this.testURL, questions).subscribe();
   }
 }
 
