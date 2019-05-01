@@ -28,6 +28,7 @@ import {QuestionCreateComponent} from './question-create/question-create.compone
 import { EnrollmentCreateComponent } from './enrollment-create/enrollment-create.component';
 import {NgxMaskModule} from 'ngx-mask';
 import { QuestionListComponent } from './question-list/question-list.component';
+import { EnrollmentListComponent } from './enrollment-list/enrollment-list.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { QuestionListComponent } from './question-list/question-list.component';
     QuestionCreateComponent,
     EnrollmentsCitySortPipe,
     EnrollmentCreateComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    EnrollmentListComponent
   ],
   imports: [
     BrowserModule,

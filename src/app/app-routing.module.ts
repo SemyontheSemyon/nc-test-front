@@ -17,6 +17,7 @@ import {ProfileHrComponent} from './profile-hr/profile-hr.component';
 import {QuestionCreateComponent} from './question-create/question-create.component';
 import {EnrollmentCreateComponent} from './enrollment-create/enrollment-create.component';
 import {QuestionListComponent} from './question-list/question-list.component';
+import {EnrollmentListComponent} from './enrollment-list/enrollment-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -32,7 +33,7 @@ const routes: Routes = [
   {path: 'student/:id', component: StudentInfoComponent},
   {path: 'profile_user', component: ProfileUserComponent},
   {path: 'profile_hr', component: ProfileHrComponent},
-  {path: 'enrollment/new', component: EnrollmentCreateComponent},
+  {path: 'enrollments', component: EnrollmentListComponent},
   {path: 'questions', component: QuestionListComponent}
 ];
 

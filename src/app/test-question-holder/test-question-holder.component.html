@@ -3,6 +3,8 @@
   <h1 class="display-4">Test</h1>
   <p class="lead">Questions</p>
 </div>
+<div class="container-fluid">
+<div class="row">
 <div class="col-sm-6">
   <form name="form" (ngSubmit)="f.valid && submitAnswers()" #f="ngForm">
 <div *ngFor="let question of questions; index as i" class="card card-body">
@@ -46,4 +48,11 @@
 
 
 
+</div>
+<div class="col">
+  <div class="card card-body" style="max-width: 15em">
+  <span class="input-group-lg input-group-text alert-danger">Time left {{testTime.mins}}:{{testTime.secs}}</span>
+  </div>
+</div>
+</div>
 </div>

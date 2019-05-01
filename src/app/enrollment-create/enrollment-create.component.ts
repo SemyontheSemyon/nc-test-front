@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CITIES} from '../cities-mock';
 import {EnrollmentService} from '../enrollment.service';
 import {CityService} from '../city.service';
@@ -11,18 +11,18 @@ import {TokenService} from '../token.service';
 })
 export class EnrollmentCreateComponent implements OnInit {
 
-  enrollment = {};
+  @Input() enrollment = {};
 
   specialities: string[] = ['BA', 'QA', 'DEV'];
 
-  cities: string[] = CITIES;
+  cities: string[];
+
+  @Input() editing = false;
 
   constructor(private enrollmentService: EnrollmentService,
-              private cityService: CityService,
-              private tokenService: TokenService) { }
+              private cityService: CityService) { }
 
   ngOnInit() {
-    this.tokenService.checkAuthorities('ROLE_MANAGER');
     this.cityService.getCities().subscribe(cities => this.cities = cities);
   }
 

@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {LOCALHOST} from './localhost';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CityService {
 
-  private cityUrl = 'http://localhost:8080/api/city';
+  private localhostURL = LOCALHOST;
+  private cityURL = this.localhostURL + 'api/cities';
 
   constructor(private httpClient: HttpClient) { }
 
   getCities(): Observable<string[]> {
-    return this.httpClient.get<string[]>(this.cityUrl);
+    return this.httpClient.get<string[]>(this.cityURL);
   }
 
 }

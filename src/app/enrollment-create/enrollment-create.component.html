@@ -1,11 +1,3 @@
-<app-header></app-header>
-
-<div class="jumbotron">
-  <h1 class="display-4">Add a new enrollment</h1>
-</div>
-
-<div class="col-sm-6">
-
  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
 
    <div class="form-group">
@@ -13,6 +5,7 @@
    </div>
 
 
+   <div *ngIf="!editing">
    <div class="form-group">
      <div class="input-group mb-3">
        <span class="input-group-text" style="width:15em">City</span>
@@ -28,8 +21,22 @@
 
    <div class="form-group">
      <div class="input-group mb-3">
+       <span class="input-group-text" style="width:15em">Speciality</span>
+       <select class="custom-select" style="max-width:16em" name="speciality" [(ngModel)]="enrollment.speciality" #speciality="ngModel"
+               required>
+         <option *ngFor="let speciality of specialities">{{speciality}}</option>
+       </select>
+       <div *ngIf="f.submitted && speciality.invalid">
+         <div *ngIf="speciality.errors.required" class="input-group-text alert-danger">Speciality is required</div>
+       </div>
+     </div>
+   </div>
+   </div>
+
+   <div class="form-group">
+     <div class="input-group mb-3">
        <span class="input-group-text" style="width:15em;">App start</span>
-       <input type="text" class="form-control" style="max-width: 16em" mask="00/00/0000" placeholder="dd/mm/yyyy" [dropSpecialCharacters]="false"
+       <input type="text" class="form-control" style="max-width: 16em" mask="0000-00-00" placeholder="YYYY-MM-DD" [dropSpecialCharacters]="false"
               name="appStart" [(ngModel)]="enrollment.appStart" #appStart="ngModel" required minlength="10"/>
        <div *ngIf="f.submitted && appStart.invalid">
          <div *ngIf="appStart.errors.required || appStart.errors.minlength" class="input-group-text alert-danger">App start is required</div>
@@ -40,7 +47,7 @@
    <div class="form-group">
      <div class="input-group mb-3">
        <span class="input-group-text" style="width:15em;">App end</span>
-       <input type="text" class="form-control" style="max-width: 16em" mask="00/00/0000" placeholder="dd/mm/yyyy" [dropSpecialCharacters]="false"
+       <input type="text" class="form-control" style="max-width: 16em" mask="0000-00-00" placeholder="YYYY-MM-DD" [dropSpecialCharacters]="false"
               name="appEnd" [(ngModel)]="enrollment.appEnd" #appEnd="ngModel" required minlength="10"/>
        <div *ngIf="f.submitted && appEnd.invalid">
          <div *ngIf="appEnd.errors.required || appEnd.errors.minlength" class="input-group-text alert-danger">App end is required</div>
@@ -51,7 +58,7 @@
    <div class="form-group">
      <div class="input-group mb-3">
        <span class="input-group-text" style="width:15em;">Test start</span>
-       <input type="text" class="form-control" style="max-width: 16em" mask="00/00/0000" placeholder="dd/mm/yyyy" [dropSpecialCharacters]="false"
+       <input type="text" class="form-control" style="max-width: 16em" mask="0000-00-00" placeholder="YYYY-MM-DD" [dropSpecialCharacters]="false"
               name="testStart" [(ngModel)]="enrollment.testStart" #testStart="ngModel" required minlength="10"/>
        <div *ngIf="f.submitted && testStart.invalid">
          <div *ngIf="testStart.errors.required || testStart.errors.minlength" class="input-group-text alert-danger">Test start is required</div>
@@ -62,23 +69,10 @@
    <div class="form-group">
      <div class="input-group mb-3">
        <span class="input-group-text" style="width:15em;">Test end</span>
-       <input type="text" class="form-control" style="max-width: 16em" mask="00/00/0000" placeholder="dd/mm/yyyy" [dropSpecialCharacters]="false"
+       <input type="text" class="form-control" style="max-width: 16em" mask="0000-00-00" placeholder="YYYY-MM-DD" [dropSpecialCharacters]="false"
               name="testEnd" [(ngModel)]="enrollment.testEnd" #testEnd="ngModel" required minlength="10"/>
        <div *ngIf="f.submitted && testEnd.invalid">
          <div *ngIf="testEnd.errors.required || testEnd.errors.minlength" class="input-group-text alert-danger">Test end is required</div>
-       </div>
-     </div>
-   </div>
-
-   <div class="form-group">
-     <div class="input-group mb-3">
-       <span class="input-group-text" style="width:15em">Speciality</span>
-       <select class="custom-select" style="max-width:16em" name="speciality" [(ngModel)]="enrollment.speciality" #speciality="ngModel"
-               required>
-         <option *ngFor="let speciality of specialities">{{speciality}}</option>
-       </select>
-       <div *ngIf="f.submitted && speciality.invalid">
-         <div *ngIf="speciality.errors.required" class="input-group-text alert-danger">Speciality is required</div>
        </div>
      </div>
    </div>
@@ -96,7 +90,7 @@
    <div class="form-group">
      <div class="input-group mb-3">
        <span class="input-group-text" style="width:15em;">Time for test</span>
-       <input type="text" class="form-control" style="max-width: 16em" name="testTime" [(ngModel)]="enrollment.testTime" #testTime="ngModel" required/>
+       <input type="text" class="form-control" style="max-width: 16em" name="testTime" [(ngModel)]="enrollment.time" #testTime="ngModel" required/>
        <div *ngIf="f.submitted && testTime.invalid">
          <div *ngIf="testTime.errors.required" class="input-group-text alert-danger">Test time is required</div>
        </div>
@@ -106,7 +100,7 @@
    <div class="form-group">
      <div class="input-group mb-3">
        <span class="input-group-text" style="width:15em;">Test threshold</span>
-       <input type="text" class="form-control" style="max-width: 16em" name="testTime" [(ngModel)]="enrollment.testThreshold" #testThreshold="ngModel" required/>
+       <input type="text" class="form-control" style="max-width: 16em" name="testTime" [(ngModel)]="enrollment.threshold" #testThreshold="ngModel" required/>
        <div *ngIf="f.submitted && testTime.invalid">
          <div *ngIf="testThreshold.errors.required" class="input-group-text alert-danger">Test threshold is required</div>
        </div>
@@ -115,5 +109,3 @@
 
    <button class="btn-primary">Submit</button>
  </form>
-
-</div>
