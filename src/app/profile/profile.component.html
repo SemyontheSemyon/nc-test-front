@@ -78,6 +78,16 @@
 
       </form>
     </div>
+  </div>
 
+  <h4>Your tests</h4>
+  <div class="row">
+    <div *ngIf="testAvailable">
+      <p>You have a test available until: {{userInfo.testEnd}}</p>
+      <a class="btn btn-primary" role="button" routerLink="/test/start">Start test</a>
+    </div>
+    <div *ngIf="!testAvailable">
+      <p>There are no tests available</p>
+    </div>
   </div>
 </div>

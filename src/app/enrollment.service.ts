@@ -1,11 +1,8 @@
-import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {Enrollment} from './enrollment';
-import {ENROLLMENTS} from './enrollment-mock';
-import {ECTF_MOCK} from './ectf-mock';
-import {EnrollmentCityTestFormat} from './enrollment-city-test-format';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {LOCALHOST} from './localhost';
+import {Enrollment} from './enrollment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +15,7 @@ export class EnrollmentService {
   constructor(private http: HttpClient) { }
 
   getEnrollments(): Observable<Enrollment[]> {
-    return of(ENROLLMENTS);
-  }
-
-  getEnrollment(id: number): Observable<EnrollmentCityTestFormat> {
-    return of(ECTF_MOCK.find(ectf => ectf.enrollment.id === id));
+    return this.http.get<Enrollment[]>(this.enrollmentURL + 'active');
   }
 
   addEnrollment(enrollment: any) {

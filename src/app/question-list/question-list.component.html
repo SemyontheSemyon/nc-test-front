@@ -32,7 +32,7 @@
     <span class="form-control" style="max-width: 4.1em">{{question.type}}</span>
     <span class="form-control" style="max-width: 30em">{{question.text}}</span>
     <span class="form-control" style="max-width: 13.1em">{{question.correctAnswer}}</span>
-    <button class="btnbtn-primary" data-toggle="collapse" [attr.data-target]="'#collapse' + i">Edit</button>
+    <button class="btn btn-primary" data-toggle="collapse" [attr.data-target]="'#collapse' + i">Edit</button>
     <button class="btn btn-primary" (click)="removeQuestion(question.id)">X</button>
   </div>
 

@@ -14,7 +14,6 @@ import {ProfileComponent} from './profile/profile.component';
 import {TestQuestionHolderComponent} from './test-question-holder/test-question-holder.component';
 import {TestStartComponent} from './test-start/test-start.component';
 import {TestFinishComponent} from './test-finish/test-finish.component';
-import {EnrollmentPageComponent} from './enrollment-page/enrollment-page.component';
 import {StudentsListComponent} from './students-list/students-list.component';
 import {StudentInfoComponent} from './student-info/student-info.component';
 import {HeaderComponent} from './header/header.component';
@@ -40,7 +39,6 @@ import {AdminComponent} from './admin/admin.component';
     TestQuestionHolderComponent,
     TestStartComponent,
     TestFinishComponent,
-    EnrollmentPageComponent,
     StudentsListComponent,
     StudentInfoComponent,
     HeaderComponent,

@@ -18,12 +18,20 @@
       </div>
     </div>
     <div *ngFor="let enrollment of (enrollments | enrollmentsCitySort: currentCity)" class="dropdown-item">
-      {{enrollment.city}}
-      <div *ngIf="!userInfo">
+      <p>{{enrollment.city}}</p>
+      <p>{{enrollment.testStart}}</p>
+      <p>{{enrollment.testEnd}}</p>
+      <div *ngIf="!userInfo.studentStatus && username">
+        <a class="btn btn-primary" role="button" routerLink="/profile">Fill info</a>
+      </div>
+      <div *ngIf="!username">
         <a class="btn btn-primary" routerLink="/login" role="button">Go to login page</a>
       </div>
-      <div *ngIf="userInfo">
+      <div *ngIf="username && userInfo.studentStatus=='Registred'">
         <button (click)="enroll(enrollment)" class="btn btn-primary" type="submit">Enroll</button>
+      </div>
+      <div *ngIf="username && userInfo.studentStatus=='Applied'">
+        <button class="btn btn-primary" disabled="true" type="submit">Already enrolled</button>
       </div>
     </div>
   </div>

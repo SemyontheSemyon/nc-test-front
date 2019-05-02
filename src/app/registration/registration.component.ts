@@ -18,7 +18,7 @@ export class RegistrationComponent implements OnInit {
   isRegistrationFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
         console.log(data);
         this.isRegistred = true;
         this.isRegistrationFailed = false;
-        window.location.reload();
+        this.router.navigate(['login']);
       },
       error => {
         console.log(error);

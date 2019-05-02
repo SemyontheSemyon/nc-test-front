@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {UserInfo} from '../user-info';
+import {Router} from '@angular/router';
 import {TokenService} from '../token.service';
 
 @Component({
@@ -10,28 +11,33 @@ import {TokenService} from '../token.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private router: Router,
+              private tokenService: TokenService) {
   }
 
   userInfo: UserInfo;
   testAvailable: boolean;
 
   ngOnInit() {
+    this.checkUser();
     this.getUserInfo();
   }
 
   getUserInfo() {
     this.userService.getUserInfo().subscribe(userInfo => {
       this.userInfo = userInfo;
-      console.log(this.userInfo);
-
       const d = new Date().valueOf();
-      if (this.userInfo.testStart && this.userInfo.testEnd) {
-        if (this.userInfo.testStart.valueOf() > d && this.userInfo.testEnd.valueOf() < d) {
-          this.testAvailable = true;
-        }
+      if (new Date(this.userInfo.testStart).valueOf() < d && new Date(this.userInfo.testEnd).valueOf() > d) {
+        this.testAvailable = true;
       }
     });
+  }
+
+  checkUser() {
+    if (!this.tokenService.getToken()) {
+      this.router.navigate(['home']);
+    }
   }
 
   submitUserInfo() {

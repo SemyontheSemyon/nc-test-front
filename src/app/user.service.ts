@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
-import {User} from './user';
-import {Observable, of} from 'rxjs';
-import {USERS} from './user-mock';
+import {Observable} from 'rxjs';
 import {UserInfo} from './user-info';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {LOCALHOST} from './localhost';
 
 @Injectable({
@@ -15,10 +13,6 @@ export class UserService {
   private userInfoUrl = LOCALHOST + 'api/profile';
 
   constructor(private http: HttpClient) {
-  }
-
-  getStudents(): Observable<User[]> {
-    return of(USERS.filter(user => user.authority === 1));
   }
 
   getUserInfo(): Observable<UserInfo> {

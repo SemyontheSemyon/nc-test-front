@@ -18,6 +18,7 @@ export class SpecialityPageComponent implements OnInit {
 
   speciality: Speciality;
   userInfo: UserInfo;
+  username: string;
 
   enrollments: Enrollment[];
   cities: string[];
@@ -33,10 +34,15 @@ export class SpecialityPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getEnrollments();
     this.getSpeciality();
-    this.getCities();
+    this.getUser();
     this.getUserInfo();
+    this.getEnrollments();
+    this.getCities();
+  }
+
+  getUser() {
+    this.username = this.tokenService.getUsername();
   }
 
   getSpeciality() {
@@ -46,10 +52,10 @@ export class SpecialityPageComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.userService.getUserInfo().subscribe(userInfo => {
-      this.userInfo = userInfo;
-      console.log(this.userInfo);
-    });
+    if (this.username) {
+      this.userService.getUserInfo().subscribe(userInfo => this.userInfo = userInfo);
+
+    }
   }
 
   getCities() {
@@ -65,11 +71,12 @@ export class SpecialityPageComponent implements OnInit {
   }
 
   enroll(enrollment: Enrollment) {
-    if (this.userInfo.studentStatus !== 'Applied') {
+    if (this.userInfo.studentStatus === 'Registred') {
       this.userInfo.studentStatus = 'Applied';
       this.userInfo.enrollmentId = enrollment.id;
+      this.userInfo.testStart = enrollment.testStart;
+      this.userInfo.testEnd = enrollment.testEnd;
       this.userService.saveUserInfo(this.userInfo).subscribe(data => console.log(data));
-      console.log(this.userInfo);
     }
   }
 }

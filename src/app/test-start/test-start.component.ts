@@ -23,7 +23,8 @@ export class TestStartComponent implements OnInit {
     this.getTestFormat();
     this.userService.getUserInfo().subscribe(userInfo => {
       this.userInfo = userInfo;
-      if (userInfo.studentStatus !== 'Registred') {this.router.navigate(['/home']); }
+      console.log(this.userInfo);
+      if (userInfo.studentStatus !== 'Applied') {this.router.navigate(['/home']); }
     });
   }
 

@@ -52,7 +52,7 @@ export class TestQuestionHolderComponent implements OnInit {
   checkUserInfo() {
     this.userService.getUserInfo().subscribe(userInfo => {
       this.userInfo = userInfo;
-      if (userInfo.studentStatus !== 'Registred') {
+      if (userInfo.studentStatus !== 'Applied') {
         this.router.navigate(['/home']);
       }
     });

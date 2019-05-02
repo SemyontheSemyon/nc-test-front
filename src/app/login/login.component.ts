@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: LoginInfo;
 
-  constructor(private authService: AuthService, private tokenService: TokenService) {
+  constructor(private authService: AuthService, private tokenService: TokenService, private router: Router) {
   }
 
   ngOnInit() {
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenService.getAuthorities();
+        this.router.navigate(['home']);
       },
       error => {
         console.log(error);

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TokenService} from '../token.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
   private roles: any[];
   private authority: string;
 
-  constructor(private tokenService: TokenService) {
+  constructor(private tokenService: TokenService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -28,14 +30,12 @@ export class HeaderComponent implements OnInit {
         return true;
       });
     }
-    console.log(this.roles);
-    console.log(this.authority);
   }
 
   logout() {
     this.tokenService.signOut();
     this.authority = '';
-    window.location.reload();
+    this.router.navigate(['home']);
   }
 
 }

@@ -16,10 +16,14 @@ export class StudentsListComponent implements OnInit {
 
   ngOnInit() {
     this.getUserTests();
+    console.log(this.userTests);
   }
 
   getUserTests() {
-    this.testService.getUserTests().subscribe(userTests => this.userTests = userTests);
+    this.testService.getUserTests().subscribe(userTests => {
+      this.userTests = userTests;
+      console.log(this.userTests);
+    });
   }
 
 
