@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
@@ -14,21 +14,19 @@ import {ProfileComponent} from './profile/profile.component';
 import {TestQuestionHolderComponent} from './test-question-holder/test-question-holder.component';
 import {TestStartComponent} from './test-start/test-start.component';
 import {TestFinishComponent} from './test-finish/test-finish.component';
-import {ProfileHrComponent} from './profile-hr/profile-hr.component';
 import {EnrollmentPageComponent} from './enrollment-page/enrollment-page.component';
 import {StudentsListComponent} from './students-list/students-list.component';
 import {StudentInfoComponent} from './student-info/student-info.component';
 import {HeaderComponent} from './header/header.component';
 import {EnrollmentsCitySortPipe} from './enrollments-city-sort.pipe';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth-interceptor';
 import {CollapseModule} from 'ngx-bootstrap';
-import {ProfileUserComponent} from './profile-user/profile-user.component';
 import {QuestionCreateComponent} from './question-create/question-create.component';
-import { EnrollmentCreateComponent } from './enrollment-create/enrollment-create.component';
+import {EnrollmentCreateComponent} from './enrollment-create/enrollment-create.component';
 import {NgxMaskModule} from 'ngx-mask';
-import { QuestionListComponent } from './question-list/question-list.component';
-import { EnrollmentListComponent } from './enrollment-list/enrollment-list.component';
+import {QuestionListComponent} from './question-list/question-list.component';
+import {EnrollmentListComponent} from './enrollment-list/enrollment-list.component';
+import {AdminComponent} from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +40,6 @@ import { EnrollmentListComponent } from './enrollment-list/enrollment-list.compo
     TestQuestionHolderComponent,
     TestStartComponent,
     TestFinishComponent,
-    ProfileUserComponent,
-    ProfileHrComponent,
     EnrollmentPageComponent,
     StudentsListComponent,
     StudentInfoComponent,
@@ -52,7 +48,8 @@ import { EnrollmentListComponent } from './enrollment-list/enrollment-list.compo
     EnrollmentsCitySortPipe,
     EnrollmentCreateComponent,
     QuestionListComponent,
-    EnrollmentListComponent
+    EnrollmentListComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -17,8 +17,11 @@
       <li *ngIf="!authority" class="nav-item">
         <a class="nav-link" routerLink="/registration">Register</a>
       </li>
-      <li *ngIf="authority" class="nav-item">
+      <li *ngIf="authority=='user'" class="nav-item">
         <a class="nav-link" routerLink="/profile">Profile</a>
+      </li>
+      <li *ngIf="authority=='admin'" class="nav-item">
+        <a class="nav-link" routerLink="/admin">Admin</a>
       </li>
       <li *ngIf="authority" class="nav-item">
         <button class="btn btn-secondary" (click)="logout()">Logout</button>

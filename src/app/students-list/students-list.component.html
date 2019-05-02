@@ -1,1 +1,9 @@
-<a *ngFor="let student of students" routerLink="/student/{{student.id}}">{{student.email}} </a>
+<app-header></app-header>
+<a *ngFor="let userTest of userTests">{{userTest.email}}</a>
+<a *ngFor="let userTest of userTests">{{userTest.passed}}</a>
+<a *ngFor="let userTest of userTests">{{userTest.takenAt}}</a>
+<a *ngFor="let userTest of userTests">
+  <div *ngFor="let answer of userTest.userAnswers">
+    {{answer}};
+  </div>
+</a>

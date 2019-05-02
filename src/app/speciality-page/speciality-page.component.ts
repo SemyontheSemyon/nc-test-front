@@ -1,14 +1,13 @@
-import {Component, OnInit, OnChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SpecialityService} from '../speciality.service';
 import {Speciality} from '../speciality';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../user.service';
-import {User} from '../user';
 import {EnrollmentService} from '../enrollment.service';
 import {Enrollment} from '../enrollment';
-import {EnrollmentCityTestFormat} from '../enrollment-city-test-format';
 import {UserInfo} from '../user-info';
 import {TokenService} from '../token.service';
+import {CityService} from '../city.service';
 
 @Component({
   selector: 'app-speciality-page',
@@ -29,6 +28,7 @@ export class SpecialityPageComponent implements OnInit {
               private userService: UserService,
               private enrollmentService: EnrollmentService,
               private route: ActivatedRoute,
+              private cityService: CityService,
               private tokenService: TokenService) {
   }
 
@@ -53,7 +53,7 @@ export class SpecialityPageComponent implements OnInit {
   }
 
   getCities() {
-    this.specialityService.getCities().subscribe(cities => this.cities = cities);
+    this.cityService.getCities().subscribe(cities => this.cities = cities);
   }
 
   getEnrollments() {

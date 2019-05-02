@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenService} from '../token.service';
 
 @Component({
@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
   title = 'NetCracker Test System';
 
-  private roles: string[];
+  private roles: any[];
   private authority: string;
 
   constructor(private tokenService: TokenService) {
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     if (this.tokenService.getToken()) {
       this.roles = this.tokenService.getAuthorities();
       this.roles.every(role => {
-        if (role === 'ROLE_ADMIN') {
+        if (role.authority === 'ROLE_MANAGER') {
           this.authority = 'admin';
           return false;
         }
@@ -28,6 +28,8 @@ export class HeaderComponent implements OnInit {
         return true;
       });
     }
+    console.log(this.roles);
+    console.log(this.authority);
   }
 
   logout() {

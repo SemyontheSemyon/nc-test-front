@@ -1,30 +1,33 @@
 import {Injectable} from '@angular/core';
 
 import {Speciality} from './speciality';
-import {SPECIALITIES} from './speciality-mock';
-import {Observable, of} from 'rxjs';
-import {CITIES} from './cities-mock';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {LOCALHOST} from './localhost';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpecialityService {
 
-  cities: string[];
+  localhost = LOCALHOST;
 
-  constructor() {
+  specialityURL = this.localhost + 'api/speciality/';
+  citiesURL = this.localhost + 'api/cities';
+
+  constructor(private http: HttpClient) {
   }
 
   getSpecialities(): Observable<Speciality[]> {
-    return of(SPECIALITIES);
+    return this.http.get<Speciality[]>(this.specialityURL + 'all');
   }
 
   getSpeciality(name: string): Observable<Speciality> {
-    return of(SPECIALITIES.find(speciality => speciality.name === name));
+    return this.http.get<Speciality>(this.specialityURL + name);
   }
 
   getCities(): Observable<string[]> {
-    return of(CITIES);
+    return this.http.get<string[]>(this.citiesURL + name);
   }
 
 }
