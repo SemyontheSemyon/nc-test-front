@@ -1,0 +1,58 @@
+<app-header></app-header>
+<div class="jumbotron">
+  <h1 class="display-4">Test</h1>
+  <p class="lead">Questions</p>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+      <form #f="ngForm" (ngSubmit)="f.valid && submitAnswers()" name="form">
+        <div *ngFor="let question of questions; index as i" class="card card-body">
+
+          {{question.text}}
+
+          <div *ngIf="question.type === 'free'">
+
+            <div class="input-group">
+              <textarea [(ngModel)]="answers[i].studentAnswer" class="form-control" name="text" style="max-width: 35em"
+                        type="text"></textarea>
+            </div>
+
+          </div>
+
+          <div *ngIf="question.type === 'radio'">
+
+            <div *ngFor="let answer of question.answers">
+
+              <div class="input-group">
+                <div class="input-group-text">
+                  <input [(ngModel)]="answers[i].studentAnswer" [value]="answer" name="{{i}}" type="radio">
+                </div>
+                <span class="form-control" style="max-width: 30em">{{answer}}</span>
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <button (click)="confirm=true" *ngIf="!confirm" class="btn btn-primary" type="button">Submit</button>
+        <div *ngIf="confirm">
+          <span class="alert alert-info">Are you sure?</span>
+          <button (click)="confirm=false" class="btn btn-primary" type="button">No</button>
+          <button (click)="submitAnswers()" class="btn btn-primary" type="button">Yes</button>
+        </div>
+      </form>
+
+
+    </div>
+    <div class="col">
+      <div class="card card-body" style="max-width: 15em">
+        <span class="input-group-lg input-group-text alert-danger">Time left {{testTime.mins}}:{{testTime.secs}}</span>
+      </div>
+    </div>
+  </div>
+</div>

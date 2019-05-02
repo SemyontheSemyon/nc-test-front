@@ -1,0 +1,95 @@
+<div>
+  <form #f="ngForm" (submit)="f.valid && addQuestion()" name="form">
+
+    <div *ngIf="!editing" class="form-group">
+      <div class="input-group mb-3">
+        <span class="input-group-text" style="width:9em">Question type</span>
+        <select #type="ngModel" [(ngModel)]="question.type" class="custom-select" name="type" required
+                style="max-width:22em">
+          <option *ngFor="let type of types">{{type}}</option>
+        </select>
+        <div *ngIf="f.submitted && type.invalid">
+          <div *ngIf="type.errors.required" class="input-group-text alert-danger">Question type is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!editing" class="form-group">
+      <div class="input-group mb-3">
+        <span class="input-group-text" style="width:9em">Speciality</span>
+        <select #speciality="ngModel" [(ngModel)]="question.speciality" class="custom-select" name="speciality"
+                required
+                style="max-width:22em">
+          <option *ngFor="let speciality of specialities">{{speciality}}</option>
+        </select>
+        <div *ngIf="f.submitted && speciality.invalid">
+          <div *ngIf="speciality.errors.required" class="input-group-text alert-danger">Speciality is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <span class="input-group-text" style="width:9em">Question text</span>
+        <textarea #text="ngModel" [(ngModel)]="question.text" class="form-control" name="text" required
+                  style="max-width: 35em"
+                  type="text"></textarea>
+        <div *ngIf="f.submitted && text.invalid">
+          <div *ngIf="text.errors.required" class="input-group-text alert-danger">Text is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="question.type === 'radio'" class="row">
+      <div class="col-3">
+        <span class="input-group-text" style="width: 9em"> Answers </span>
+      </div>
+
+      <div class="col">
+        <div *ngFor="let answer of question.answers; index as i">
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input #correct="ngModel" [(ngModel)]="question.correctAnswer" [value]="answer" minlength="1"
+                       name="correctAnswer" required type="radio"/>
+              </div>
+            </div>
+            <input #box (focusout)="question.answers[i] = box.value;" [ngModel]="answer" class="form-control"
+                   name="{{answer}}{{i}}"
+                   style="max-width: 20em;" type="text"/>
+            <div class="input-group-append">
+              <button (click)="removeQuestion(i)" class="btn btn-primary" type="button">X</button>
+            </div>
+            <div *ngIf="f.submitted && correct.invalid">
+              <div *ngIf="(correct.errors.required || correct.errors.minlength) && i !== question.answers.length-1"
+                   class="input-group-text alert-danger">Correct answer is required
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button (click)="addAnswer()" class="btn btn-primary" type="button">New answer</button>
+      </div>
+    </div>
+
+    <div *ngIf="question.type === 'free'">
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <span class="input-group-text" style="width: 9em">Correct answer</span>
+          <input #box #correct="ngModel" (focusout)="question.answers[0] = box.value"
+                 [(ngModel)]="question.correctAnswer"
+                 class="form-control" name="correctAnswer" required
+                 style="max-width: 35em" type="text"/>
+          <div *ngIf="f.submitted && correct.invalid">
+            <div *ngIf="correct.errors.required" class="input-group-text alert-danger">Correct answer is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit"> Submit</button>
+
+
+  </form>
+</div>

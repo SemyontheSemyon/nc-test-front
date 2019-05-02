@@ -1,19 +1,18 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {SpecialityPageComponent} from './speciality-page/speciality-page.component';
-import {HomePageComponent} from './home-page/home-page.component';
-import {LoginComponent} from './login/login.component';
-import {RegistrationComponent} from './registration/registration.component';
-import {ProfileComponent} from './profile/profile.component';
-import {TestQuestionHolderComponent} from './test-question-holder/test-question-holder.component';
-import {TestFinishComponent} from './test-finish/test-finish.component';
-import {TestStartComponent} from './test-start/test-start.component';
-import {StudentsListComponent} from './students-list/students-list.component';
-import {StudentInfoComponent} from './student-info/student-info.component';
-import {QuestionListComponent} from './question-list/question-list.component';
-import {EnrollmentListComponent} from './enrollment-list/enrollment-list.component';
-import {AdminComponent} from './admin/admin.component';
+import {SpecialityPageComponent} from './components/speciality-page/speciality-page.component';
+import {HomePageComponent} from './components/home-page/home-page.component';
+import {LoginComponent} from './components/login/login.component';
+import {RegistrationComponent} from './components/registration/registration.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {TestQuestionHolderComponent} from './components/test-question-holder/test-question-holder.component';
+import {TestFinishComponent} from './components/test-finish/test-finish.component';
+import {TestStartComponent} from './components/test-start/test-start.component';
+import {StudentsListComponent} from './components/students-list/students-list.component';
+import {QuestionListComponent} from './components/question-list/question-list.component';
+import {EnrollmentListComponent} from './components/enrollment-list/enrollment-list.component';
+import {AdminComponent} from './components/admin/admin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -27,7 +26,6 @@ const routes: Routes = [
   {path: 'test/inprogress', component: TestQuestionHolderComponent},
   {path: 'test/finish', component: TestFinishComponent},
   {path: 'students', component: StudentsListComponent},
-  {path: 'student/:id', component: StudentInfoComponent},
   {path: 'enrollments', component: EnrollmentListComponent},
   {path: 'questions', component: QuestionListComponent}
 ];

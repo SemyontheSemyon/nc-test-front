@@ -5,27 +5,26 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
-import {SpecialityPadComponent} from './speciality-pad/speciality-pad.component';
-import {SpecialityPageComponent} from './speciality-page/speciality-page.component';
-import {LoginComponent} from './login/login.component';
-import {HomePageComponent} from './home-page/home-page.component';
-import {RegistrationComponent} from './registration/registration.component';
-import {ProfileComponent} from './profile/profile.component';
-import {TestQuestionHolderComponent} from './test-question-holder/test-question-holder.component';
-import {TestStartComponent} from './test-start/test-start.component';
-import {TestFinishComponent} from './test-finish/test-finish.component';
-import {StudentsListComponent} from './students-list/students-list.component';
-import {StudentInfoComponent} from './student-info/student-info.component';
-import {HeaderComponent} from './header/header.component';
-import {EnrollmentsCitySortPipe} from './enrollments-city-sort.pipe';
+import {SpecialityPadComponent} from './components/speciality-pad/speciality-pad.component';
+import {SpecialityPageComponent} from './components/speciality-page/speciality-page.component';
+import {LoginComponent} from './components/login/login.component';
+import {HomePageComponent} from './components/home-page/home-page.component';
+import {RegistrationComponent} from './components/registration/registration.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {TestQuestionHolderComponent} from './components/test-question-holder/test-question-holder.component';
+import {TestStartComponent} from './components/test-start/test-start.component';
+import {TestFinishComponent} from './components/test-finish/test-finish.component';
+import {StudentsListComponent} from './components/students-list/students-list.component';
+import {HeaderComponent} from './components/header/header.component';
+import {EnrollmentsCitySortPipe} from './pipes/enrollments-city-sort.pipe';
 import {AuthInterceptor} from './auth-interceptor';
 import {CollapseModule} from 'ngx-bootstrap';
-import {QuestionCreateComponent} from './question-create/question-create.component';
-import {EnrollmentCreateComponent} from './enrollment-create/enrollment-create.component';
+import {QuestionCreateComponent} from './components/question-create/question-create.component';
+import {EnrollmentCreateComponent} from './components/enrollment-create/enrollment-create.component';
 import {NgxMaskModule} from 'ngx-mask';
-import {QuestionListComponent} from './question-list/question-list.component';
-import {EnrollmentListComponent} from './enrollment-list/enrollment-list.component';
-import {AdminComponent} from './admin/admin.component';
+import {QuestionListComponent} from './components/question-list/question-list.component';
+import {EnrollmentListComponent} from './components/enrollment-list/enrollment-list.component';
+import {AdminComponent} from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import {AdminComponent} from './admin/admin.component';
     TestStartComponent,
     TestFinishComponent,
     StudentsListComponent,
-    StudentInfoComponent,
     HeaderComponent,
     QuestionCreateComponent,
     EnrollmentsCitySortPipe,
