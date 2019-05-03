@@ -24,7 +24,7 @@
         <a class="nav-link" routerLink="/admin">Admin</a>
       </li>
       <li *ngIf="authority" class="nav-item">
-        <button (click)="logout()" class="btn btn-secondary">Logout</button>
+        <a class="nav-link ml-auto p-2 bd-highlight" (click)="logout()" routerLink="/home">Logout</a>
       </li>
     </ul>
   </div>

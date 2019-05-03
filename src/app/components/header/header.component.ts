@@ -14,8 +14,7 @@ export class HeaderComponent implements OnInit {
   private roles: any[];
   private authority: string;
 
-  constructor(private tokenService: TokenService,
-              private router: Router) {
+  constructor(private tokenService: TokenService) {
   }
 
   ngOnInit() {
@@ -35,7 +34,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.tokenService.signOut();
     this.authority = '';
-    this.router.navigate(['home']);
   }
 
 }

@@ -13,6 +13,7 @@ import {StudentsListComponent} from './components/students-list/students-list.co
 import {QuestionListComponent} from './components/question-list/question-list.component';
 import {EnrollmentListComponent} from './components/enrollment-list/enrollment-list.component';
 import {AdminComponent} from './components/admin/admin.component';
+import {NotFoundComponent} from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -27,6 +28,8 @@ const routes: Routes = [
   {path: 'test/finish', component: TestFinishComponent},
   {path: 'students', component: StudentsListComponent},
   {path: 'enrollments', component: EnrollmentListComponent},
+  {path: '**', redirectTo: '404'},
+  {path: '404', component: NotFoundComponent},
   {path: 'questions', component: QuestionListComponent}
 ];
 
