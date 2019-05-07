@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
 
   userInfo: UserInfo;
   testAvailable: boolean;
+  showMsg: boolean = false;
 
   constructor(private userService: UserService,
               private router: Router,
@@ -44,6 +45,7 @@ export class ProfileComponent implements OnInit {
     if (!this.userInfo.studentStatus) {
       this.userInfo.studentStatus = 'Registred';
     }
-    this.userService.saveUserInfo(this.userInfo).subscribe(data => console.log(data));
+    this.userService.saveUserInfo(this.userInfo).subscribe();
+    this.showMsg = true;
   }
 }

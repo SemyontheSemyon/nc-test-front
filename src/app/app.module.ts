@@ -25,7 +25,8 @@ import {NgxMaskModule} from 'ngx-mask';
 import {QuestionListComponent} from './components/question-list/question-list.component';
 import {EnrollmentListComponent} from './components/enrollment-list/enrollment-list.component';
 import {AdminComponent} from './components/admin/admin.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import {NotFoundComponent} from './components/not-found/not-found.component';
+import {FooterComponent} from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     QuestionListComponent,
     EnrollmentListComponent,
     AdminComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

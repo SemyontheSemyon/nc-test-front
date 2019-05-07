@@ -81,6 +81,14 @@
     </div>
   </div>
 
+  <div class="row" *ngIf="showMsg">
+    <div class="col-sm-4">
+      <p class="alert alert-success">
+        User Info updated!
+      </p>
+    </div>
+  </div>
+
   <h4>Your tests</h4>
   <div class="row">
     <div *ngIf="testAvailable">

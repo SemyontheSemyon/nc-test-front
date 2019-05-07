@@ -28,9 +28,9 @@ const routes: Routes = [
   {path: 'test/finish', component: TestFinishComponent},
   {path: 'students', component: StudentsListComponent},
   {path: 'enrollments', component: EnrollmentListComponent},
+  {path: 'questions', component: QuestionListComponent},
   {path: '**', redirectTo: '404'},
-  {path: '404', component: NotFoundComponent},
-  {path: 'questions', component: QuestionListComponent}
+  {path: '404', component: NotFoundComponent}
 ];
 
 @NgModule({

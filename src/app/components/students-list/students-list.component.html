@@ -16,8 +16,7 @@
           </li>
           <div class="collapse" id="collapseInfo{{i}}">
             <div class="card card-body">
-              <p>Passed: {{userTest.passed}}</p>
-              <p>Taken at: {{userTest.takenAt}}</p>
+
             </div>
           </div>
         </ul>
@@ -25,6 +24,11 @@
       <div class="col-8">
         <div class="collapse" id="collapseTest{{i}}">
           <div class="card card-body">
+            <p>Passed: {{userTest.passed}}</p>
+            <p>Taken at: {{userTest.takenAt}}</p>
+            <div class="col">Correct</div>
+            <div class="col">Question</div>
+            <div class="col">Answer</div>
             <div *ngFor="let answer of userTest.userAnswers"
                  [ngClass]="{'bg-success text-white' : answer.correct,'bg-danger text-white' : !answer.correct}"
                  class="row">
