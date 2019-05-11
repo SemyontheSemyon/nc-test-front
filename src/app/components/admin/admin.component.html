@@ -9,12 +9,19 @@
          id="pills-home-tab" role="tab">Tests</a>
     </li>
     <li class="nav-item">
-      <a aria-controls="pills-enrollments" aria-selected="false" class="nav-link" data-toggle="pill" href="#pills-enrollments"
+      <a aria-controls="pills-enrollments" aria-selected="false" class="nav-link" data-toggle="pill"
+         href="#pills-enrollments"
          id="pills-profile-tab" role="tab">Enrollments</a>
     </li>
     <li class="nav-item">
-      <a aria-controls="pills-questions" aria-selected="false" class="nav-link" data-toggle="pill" href="#pills-questions"
+      <a aria-controls="pills-questions" aria-selected="false" class="nav-link" data-toggle="pill"
+         href="#pills-questions"
          id="pills-contact-tab" role="tab">Questions</a>
+    </li>
+    <li class="nav-item">
+      <a aria-controls="pills-statistics" aria-selected="false" class="nav-link" data-toggle="pill"
+         href="#pills-statistics"
+         id="pills-statistics-tab" role="tab">Statistics</a>
     </li>
   </ul>
   <div class="tab-content" id="pills-tabContent">
@@ -26,6 +33,9 @@
     </div>
     <div aria-labelledby="pills-questions-tab" class="tab-pane fade" id="pills-questions" role="tabpanel">
       <app-question-list></app-question-list>
+    </div>
+    <div aria-labelledby="pills-statistics-tab" class="tab-pane fade" id="pills-statistics" role="tabpanel">
+      <app-statistics></app-statistics>
     </div>
   </div>
 </div>

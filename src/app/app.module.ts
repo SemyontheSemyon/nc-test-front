@@ -29,6 +29,8 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {SearchBoxPipe} from './pipes/search-box.pipe';
+import {StatisticsComponent} from './components/statistics/statistics.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {SearchBoxPipe} from './pipes/search-box.pipe';
     AdminComponent,
     NotFoundComponent,
     FooterComponent,
-    SearchBoxPipe
+    SearchBoxPipe,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import {SearchBoxPipe} from './pipes/search-box.pipe';
     HttpClientModule,
     CollapseModule,
     FontAwesomeModule,
+    ChartsModule,
     NgxMaskModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
