@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   userInfo: UserInfo;
   testAvailable: boolean;
   showMsg: boolean = false;
+  grades: number[] = [1, 2, 3, 4, 5, 6];
 
   constructor(private userService: UserService,
               private router: Router,
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserInfo().subscribe(userInfo => {
       this.userInfo = userInfo;
       const d = new Date().valueOf();
-      if (new Date(this.userInfo.testStart).valueOf() < d && new Date(this.userInfo.testEnd).valueOf() > d) {
+      if (new Date(this.userInfo.testStart).valueOf() < d && new Date(this.userInfo.testEnd).valueOf() > d && userInfo.studentStatus !== 'TestWritten') {
         this.testAvailable = true;
       }
     });

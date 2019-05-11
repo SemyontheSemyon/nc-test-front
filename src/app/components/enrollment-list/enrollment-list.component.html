@@ -1,58 +1,52 @@
-<app-header></app-header>
-<div class="jumbotron">
-  <h1 class="display-4">Enrollemts edit page</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
+<div class="row">
+  <div class="col">
 
-      <form #f="ngForm" (ngSubmit)="f.valid && getEnrollments(selectedCity)" name="form">
-        <div class="form-group">
-          <div class="input-group mb-3">
-            <span class="input-group-text">Select city</span>
-            <select #city="ngModel" [(ngModel)]="selectedCity" class="custom-select" name="speciality"
-                    required style="max-width: 10em">
-              <option *ngFor="let city of cities">{{city}}</option>
-            </select>
-            <button class="btn btn-primary">Get enrollments</button>
-          </div>
+    <form #f="ngForm" (ngSubmit)="f.valid && getEnrollments(selectedCity)" name="form">
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Select city</span>
+          <select #city="ngModel" [(ngModel)]="selectedCity" class="custom-select" name="speciality"
+                  required style="max-width: 10em">
+            <option *ngFor="let city of cities">{{city}}</option>
+          </select>
+          <button class="btn btn-primary">Get enrollments</button>
         </div>
-      </form>
+      </div>
+    </form>
+
+    <div class="input-group">
+      <span class="input-group-text" style="width: 2.5em">Id</span>
+      <span class="input-group-text" style="width: 7em">Speciality</span>
+      <span class="input-group-text" style="width: 13em;">Application start</span>
+      <span class="input-group-text" style="width: 13em;">Test End</span>
+    </div>
+
+    <div *ngFor="let enrollment of enrollments; let i = index">
 
       <div class="input-group">
-        <span class="input-group-text" style="width: 2.5em">Id</span>
-        <span class="input-group-text" style="width: 7em">Speciality</span>
-        <span class="input-group-text" style="width: 13em;">Application start</span>
-        <span class="input-group-text" style="width: 13em;">Test End</span>
+        <span class="form-control" style="max-width: 2.5em">{{enrollment.id}}</span>
+        <span class="form-control" style="max-width: 7.1em">{{enrollment.speciality}}</span>
+        <span class="form-control" style="max-width: 13em">{{enrollment.appStart}}</span>
+        <span class="form-control" style="max-width: 13.1em">{{enrollment.testEnd}}</span>
+        <button [attr.data-target]="'#collapse' + i" class="btn btn-primary" data-toggle="collapse">Edit</button>
+        <button (click)="removeEnrollment(enrollment.id)" class="btn btn-primary">X</button>
       </div>
 
-      <div *ngFor="let enrollment of enrollments; let i = index">
-
-        <div class="input-group">
-          <span class="form-control" style="max-width: 2.5em">{{enrollment.id}}</span>
-          <span class="form-control" style="max-width: 7.1em">{{enrollment.speciality}}</span>
-          <span class="form-control" style="max-width: 13em">{{enrollment.appStart}}</span>
-          <span class="form-control" style="max-width: 13.1em">{{enrollment.testEnd}}</span>
-          <button [attr.data-target]="'#collapse' + i" class="btn btn-primary" data-toggle="collapse">Edit</button>
-          <button (click)="removeEnrollment(enrollment.id)" class="btn btn-primary">X</button>
+      <div class="collapse" id="collapse{{i}}">
+        <div class="card card-body">
+          <app-enrollment-create [editing]="true" [enrollment]="enrollment"></app-enrollment-create>
         </div>
-
-        <div class="collapse" id="collapse{{i}}">
-          <div class="card card-body">
-            <app-enrollment-create [editing]="true" [enrollment]="enrollment"></app-enrollment-create>
-          </div>
-        </div>
-
       </div>
 
     </div>
 
-    <div class="col">
-      <button [attr.data-target]="'#newEnrollment'" class="btn btn-primary" data-toggle="collapse">Add new enrollment
-      </button>
-      <div class="collapse" id="newEnrollment">
-        <app-enrollment-create class="card card-body"></app-enrollment-create>
-      </div>
+  </div>
+
+  <div class="col">
+    <button [attr.data-target]="'#newEnrollment'" class="btn btn-primary" data-toggle="collapse">Add new enrollment
+    </button>
+    <div class="collapse" id="newEnrollment">
+      <app-enrollment-create class="card card-body"></app-enrollment-create>
     </div>
   </div>
 </div>

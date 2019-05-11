@@ -27,6 +27,8 @@ import {EnrollmentListComponent} from './components/enrollment-list/enrollment-l
 import {AdminComponent} from './components/admin/admin.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {FooterComponent} from './components/footer/footer.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {SearchBoxPipe} from './pipes/search-box.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import {FooterComponent} from './components/footer/footer.component';
     EnrollmentListComponent,
     AdminComponent,
     NotFoundComponent,
-    FooterComponent
+    FooterComponent,
+    SearchBoxPipe
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import {FooterComponent} from './components/footer/footer.component';
     FormsModule,
     HttpClientModule,
     CollapseModule,
+    FontAwesomeModule,
     NgxMaskModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

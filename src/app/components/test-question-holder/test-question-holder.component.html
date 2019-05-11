@@ -3,55 +3,56 @@
   <h1 class="display-4">Test</h1>
   <p class="lead">Questions</p>
 </div>
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-sm-6">
-      <form #f="ngForm" (ngSubmit)="f.valid && submitAnswers()" name="form">
-        <div *ngFor="let question of questions; index as i" class="card card-body">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-header">
 
-          {{question.text}}
-
-          <div *ngIf="question.type === 'free'">
-
+          <h5 class>Question #{{currentQuestion}}</h5>
+          <div class="progress">
+            <div [ngStyle]="{'width.%':currentQuestion/(questions.length-1)*100}" class="progress-bar"
+                 role="progressbar"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text"> {{questions[currentQuestion].text}}</p>
+          <div *ngIf="questions[currentQuestion].type === 'free'">
             <div class="input-group">
-              <textarea [(ngModel)]="answers[i].studentAnswer" class="form-control" name="text" style="max-width: 35em"
+              <textarea [(ngModel)]="answers[currentQuestion].studentAnswer" class="form-control" name="text"
                         type="text"></textarea>
             </div>
-
           </div>
-
-          <div *ngIf="question.type === 'radio'">
-
-            <div *ngFor="let answer of question.answers">
-
+          <div *ngIf="questions[currentQuestion].type === 'radio'">
+            <div *ngFor="let answer of questions[currentQuestion].answers">
               <div class="input-group">
                 <div class="input-group-text">
-                  <input [(ngModel)]="answers[i].studentAnswer" [value]="answer" name="{{i}}" type="radio">
+                  <input [(ngModel)]="answers[currentQuestion].studentAnswer" [value]="answer"
+                         name="{{currentQuestion}}" type="radio">
                 </div>
                 <span class="form-control" style="max-width: 30em">{{answer}}</span>
               </div>
-
             </div>
-
-
           </div>
-
-
         </div>
-
-        <button (click)="confirm=true" *ngIf="!confirm" class="btn btn-primary" type="button">Submit</button>
-        <div *ngIf="confirm">
-          <span class="alert alert-info">Are you sure?</span>
-          <button (click)="confirm=false" class="btn btn-primary" type="button">No</button>
-          <button (click)="submitAnswers()" class="btn btn-primary" type="button">Yes</button>
+        <div class="card-footer">
+          <button (click)="prevQuestion()" *ngIf="currentQuestion!=0" class="btn btn-secondary">Prev</button>
+          <button (click)="nextQuestion()" *ngIf="currentQuestion!=questions.length-1" class="btn btn-secondary">Next
+          </button>
+          <button (click)="confirm=true" *ngIf="currentQuestion==questions.length-1 && !confirm"
+                  class="btn btn-primary"
+                  type="button">Submit
+          </button>
+          <button (click)="confirm=false" *ngIf="confirm" class="btn btn-secondary" type="button">No</button>
+          <button (click)="submitAnswers()" *ngIf="confirm" class="btn btn-primary" type="button">Yes</button>
+          <p *ngIf="confirm" class="alert alert-info">Are you sure?</p>
         </div>
-      </form>
-
-
+      </div>
     </div>
     <div class="col">
-      <div class="card card-body" style="max-width: 15em">
-        <span class="input-group-lg input-group-text alert-danger">Time left {{testTime.mins}}:{{testTime.secs}}</span>
+      <div class="card card-body sticky-top" style="max-width: 15em">
+          <span class="input-group-lg input-group-text alert-danger">Time left {{testTime.mins}}
+            :{{testTime.secs}}</span>
       </div>
     </div>
   </div>

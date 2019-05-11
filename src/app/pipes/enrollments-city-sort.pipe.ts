@@ -7,6 +7,12 @@ import {Enrollment} from '../dto/enrollment';
 export class EnrollmentsCitySortPipe implements PipeTransform {
 
   transform(enrollments: Enrollment[], city: string): Enrollment[] {
+    if (!enrollments) {
+      return [];
+    }
+    if (!city) {
+      return [];
+    }
     return enrollments.filter(enrollment => enrollment.city === city);
   }
 

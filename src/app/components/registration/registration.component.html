@@ -1,17 +1,17 @@
 <app-header></app-header>
 <div class="container">
-  <h1>Register</h1>
   <div class="row">
     <div *ngIf="isRegistred; else signupForm">
       Your registration is successful. Please login!
     </div>
     <ng-template #signupForm>
-      <div class="col-sm-6">
+      <div class="col-sm-4">
+        <h1 class="mt-4 mb-2">Register</h1>
         <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" name="form" novalidate>
           <div class="form-group">
             <label for="email">Email</label>
-            <input #email="ngModel" [(ngModel)]="form.email" class="form-control" email name="email" required
-                   type="text"/>
+            <input #email="ngModel" [(ngModel)]="form.email" class="form-control" email id="email" name="email" required
+                   type="email"/>
             <div *ngIf="f.submitted && email.invalid">
               <div *ngIf="email.errors.required">Email is required</div>
               <div *ngIf="email.errors.email">Email must be a valid email address</div>
@@ -19,7 +19,8 @@
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input #password="ngModel" [(ngModel)]="form.password" class="form-control" minlength="6" name="password"
+            <input #password="ngModel" [(ngModel)]="form.password" class="form-control" id="password" minlength="6"
+                   name="password"
                    required type="password"/>
             <div *ngIf="f.submitted && password.invalid">
               <div *ngIf="password.errors.required">Password is required</div>
@@ -28,8 +29,8 @@
           </div>
           <div class="form-group">
             <button class="btn btn-primary">Register</button>
-            <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
-              Signup failed!<br/>{{errorMessage}}
+            <div *ngIf="f.submitted && isRegistrationFailed" class="alert alert-warning">
+              Registration failed!<br/>
             </div>
           </div>
         </form>

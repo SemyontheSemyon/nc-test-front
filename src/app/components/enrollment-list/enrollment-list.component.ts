@@ -27,7 +27,10 @@ export class EnrollmentListComponent implements OnInit {
   }
 
   getEnrollments(selectedCity: string) {
-    this.enrollmentService.getAllEnrollments(selectedCity).subscribe(enrollments => this.enrollments = enrollments);
+    this.enrollmentService.getAllEnrollments(selectedCity).subscribe(enrollments => {
+      console.log(enrollments);
+      this.enrollments = enrollments;
+    });
   }
 
   removeEnrollment(enrollmentId: number) {

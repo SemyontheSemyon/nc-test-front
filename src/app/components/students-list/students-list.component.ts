@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TestService} from '../../services/test.service';
 import {UserTest} from '../../dto/user-test';
+import {CityService} from '../../dto/city.service';
+
 
 @Component({
   selector: 'app-students-list',
@@ -10,21 +12,24 @@ import {UserTest} from '../../dto/user-test';
 export class StudentsListComponent implements OnInit {
 
   userTests: UserTest[];
+  searchText: string;
+  currentTest: number;
 
-  constructor(private testService: TestService) {
+  constructor(private cityService: CityService,
+              private testService: TestService) {
   }
 
   ngOnInit() {
     this.getUserTests();
-    console.log(this.userTests);
   }
 
   getUserTests() {
     this.testService.getUserTests().subscribe(userTests => {
       this.userTests = userTests;
-      console.log(this.userTests);
     });
   }
 
-
+  showTest(index: number) {
+    this.currentTest = index;
+  }
 }

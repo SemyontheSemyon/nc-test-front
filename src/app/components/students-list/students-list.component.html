@@ -1,48 +1,49 @@
-<app-header></app-header>
-<div class="container">
-  <h1>Student tests</h1>
-  <div *ngFor="let userTest of userTests; let i = index">
-    <div class="row">
-      <div class="col-4">
-        <ul class="list-group">
-          <li class="list-group-item">
-            User:{{userTest.email}}
-            <button [attr.data-target]="'#collapseInfo' + i" class="btn btn-primary" data-toggle="collapse"
-                    type="button">Info
-            </button>
-            <button [attr.data-target]="'#collapseTest' + i" class="btn btn-primary" data-toggle="collapse"
-                    type="button">Test
-            </button>
-          </li>
-          <div class="collapse" id="collapseInfo{{i}}">
-            <div class="card card-body">
+<div class="form-group">
+  <div class="input-group mb-3">
+    <span class="input-group-text">Search email</span>
+    <input [(ngModel)]="searchText" placeholder="search text goes here">
+  </div>
+</div>
 
-            </div>
-          </div>
-        </ul>
+<div class="input-group">
+  <span class="input-group-text" style="width: 5em">Passed</span>
+  <span class="input-group-text" style="width: 16em">Email</span>
+  <span class="input-group-text" style="width: 10em">Taken at</span>
+</div>
+<div *ngFor="let userTest of userTests| searchBox : searchText; let i = index">
+  <div class="row">
+    <div class="col-4">
+      <div class="input-group">
+        <span class="form-control" style="max-width: 5em">{{userTest.passed}}</span>
+        <span class="form-control" style="max-width: 16em">{{userTest.email}}</span>
+        <span class="form-control" style="max-width: 10em">{{userTest.takenAt.slice(0, 10)}}</span>
+        <button (click)="showTest" [attr.data-target]="'#collapseTest' + i" class="btn btn-primary"
+                data-toggle="collapse" type="button">Test
+        </button>
       </div>
-      <div class="col-8">
-        <div class="collapse" id="collapseTest{{i}}">
-          <div class="card card-body">
-            <p>Passed: {{userTest.passed}}</p>
-            <p>Taken at: {{userTest.takenAt}}</p>
-            <div class="col">Correct</div>
-            <div class="col">Question</div>
-            <div class="col">Answer</div>
-            <div *ngFor="let answer of userTest.userAnswers"
-                 [ngClass]="{'bg-success text-white' : answer.correct,'bg-danger text-white' : !answer.correct}"
-                 class="row">
-              <div class="col">
-                <p>{{answer.correct}}</p>
-              </div>
-              <div class="col">
-                <p>{{answer.question.text}}</p>
-              </div>
-              <div class="col">
-                <p>{{answer.studentAnswer}}</p>
-              </div>
-            </div>
-          </div>
+    </div>
+    <div class="col-8">
+      <div class="collapse" id="collapseTest{{i}}">
+        <div class="card card-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Correctness</th>
+              <th scope="col">Question</th>
+              <th scope="col">Answer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let answer of userTest.userAnswers; let i = index"
+                [ngClass]="{'table-success' : answer.correct,'table-danger' : !answer.correct}">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{answer.correct}}</td>
+              <td>{{answer.question.text}}</td>
+              <td>{{answer.studentAnswer}}</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

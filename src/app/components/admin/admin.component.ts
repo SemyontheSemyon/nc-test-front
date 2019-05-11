@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {TokenService} from '../../services/token.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,10 +8,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() {
+  currentTab: string;
+
+  constructor(private tokenService: TokenService) {
   }
 
   ngOnInit() {
+    this.setTab('tests');
+    this.tokenService.checkAuthorities('ROLE_MANAGER');
   }
 
+  setTab(tab: string) {
+    this.currentTab = tab;
+  }
 }

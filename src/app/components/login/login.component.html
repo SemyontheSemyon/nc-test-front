@@ -1,12 +1,12 @@
 <app-header></app-header>
 <div class="container">
-  <h1>Login</h1>
   <div class="row">
     <div *ngIf="isLoggedIn; else loggedOut">
-      Logged in as {{roles}}.
+      You are logged in.
     </div>
     <ng-template #loggedOut>
-      <div class="col-sm-6" style="max-width:350px;">
+      <div class="col-sm-4">
+        <h1 class="mt-4 mb-2">Login</h1>
         <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" name="form" novalidate>
           <div class="form-group">
             <label for="email">Email</label>
@@ -29,9 +29,10 @@
           <div class="form-group">
             <button class="btn btn-primary">Login</button>
             <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
-              Login failed: {{errorMessage}}
+              Login failed!
             </div>
           </div>
+          <a routerLink="/registration">Don't have an account?</a>
         </form>
       </div>
     </ng-template>

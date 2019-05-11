@@ -63,7 +63,11 @@ export class SpecialityPageComponent implements OnInit {
   }
 
   getEnrollments() {
-    this.enrollmentService.getEnrollments().subscribe(enrollments => this.enrollments = enrollments);
+    this.enrollmentService.getEnrollments().subscribe(enrollments => this.enrollments = enrollments.filter(enrollment => {
+      if (enrollment.speciality === this.speciality.name) {
+        return enrollment;
+      }
+    }));
   }
 
   setCity(city: string) {

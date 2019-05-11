@@ -3,15 +3,14 @@
   <h1 class="display-4">Test</h1>
   <p class="lead">Information</p>
 </div>
-
-<div class="col-sm-6">
-
-  <div class="card card-body">
-    <p class="text-primary">Number of questions in test - {{testFormat.numberOfQuestions}}</p>
-
-    <p class="text-primary">To pass the test you need to have {{testFormat.threshold}} correct answers</p>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="text-center">Attention!</h5>
+      <p>You will only have one chance to pass this test.</p>
+      <p class="text-primary">Number of questions in test - {{testFormat.numberOfQuestions}}.</p>
+      <p class="text-primary">To pass the test you need to have {{testFormat.threshold}} correct answers.</p>
+      <a class="btn btn-secondary" routerLink="/test/inprogress"> Begin test</a>
+    </div>
   </div>
-
-  <button class="btn btn-primary" routerLink="/test/inprogress"> Begin test</button>
-
 </div>

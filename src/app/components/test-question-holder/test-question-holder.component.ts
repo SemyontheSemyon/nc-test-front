@@ -16,6 +16,7 @@ export class TestQuestionHolderComponent implements OnInit {
 
   questions: Question[] = [];
   answers = [];
+  currentQuestion: number;
   confirm = false;
   userInfo: UserInfo;
   testTime = {time: 999, mins: 99, secs: 99};
@@ -45,10 +46,22 @@ export class TestQuestionHolderComponent implements OnInit {
 
   getQuestions() {
     this.testService.getQuestions().subscribe(questions => {
-        questions.forEach(question => this.answers.push({id: question.id, studentAnswer: ''}));
-        this.questions = questions;
-      }
-    );
+      questions.forEach(question => this.answers.push({id: question.id, studentAnswer: ''}));
+      this.questions = questions;
+      this.currentQuestion = 0;
+    });
+  }
+
+  nextQuestion() {
+    if (this.currentQuestion < this.questions.length - 1) {
+      this.currentQuestion++;
+    }
+  }
+
+  prevQuestion() {
+    if (this.currentQuestion > 0) {
+      this.currentQuestion--;
+    }
   }
 
   checkUserInfo() {

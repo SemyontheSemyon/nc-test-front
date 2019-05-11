@@ -19,6 +19,10 @@ export class UserService {
     return this.http.get<UserInfo>(this.userInfoUrl);
   }
 
+  getUserInfoByEmail(email: string): Observable<UserInfo> {
+    return this.http.get<UserInfo>(this.userInfoUrl + '/' + email);
+  }
+
   saveUserInfo(userInfo: UserInfo) {
     return this.http.post<UserInfo>(this.userInfoUrl, userInfo);
   }

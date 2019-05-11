@@ -23,7 +23,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
 
     this.registrationInfo = new RegistrationInfo(
       this.form.email,
@@ -32,13 +31,11 @@ export class RegistrationComponent implements OnInit {
 
     this.authService.register(this.registrationInfo).subscribe(
       data => {
-        console.log(data);
         this.isRegistred = true;
         this.isRegistrationFailed = false;
         this.router.navigate(['login']);
       },
       error => {
-        console.log(error);
         this.errorMessage = error.error.message;
         this.isRegistrationFailed = true;
       }
