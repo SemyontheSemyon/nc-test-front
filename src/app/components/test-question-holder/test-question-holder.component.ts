@@ -15,6 +15,7 @@ import {timer} from 'rxjs';
 export class TestQuestionHolderComponent implements OnInit {
 
   questions: Question[] = [];
+  checks = [];
   answers = [];
   currentQuestion: number;
   confirm = false;
@@ -46,7 +47,10 @@ export class TestQuestionHolderComponent implements OnInit {
 
   getQuestions() {
     this.testService.getQuestions().subscribe(questions => {
-      questions.forEach(question => this.answers.push({id: question.id, studentAnswer: ''}));
+      questions.forEach(question => {
+        this.answers.push({id: question.id, studentAnswer: ['']});
+        this.checks.push([]);
+      });
       this.questions = questions;
       this.currentQuestion = 0;
     });
@@ -86,6 +90,14 @@ export class TestQuestionHolderComponent implements OnInit {
         this.submitAnswers();
       }
     });
+  }
+
+  updateAnswers() {
+    let q = [];
+    this.checks[this.currentQuestion].forEach((value, index) => {
+      if (value === true) {q.push(this.questions[this.currentQuestion].answers[index]); }
+    });
+    this.answers[this.currentQuestion].studentAnswer = q;
   }
 
 

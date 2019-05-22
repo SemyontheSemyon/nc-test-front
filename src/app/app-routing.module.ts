@@ -14,6 +14,7 @@ import {QuestionListComponent} from './components/question-list/question-list.co
 import {EnrollmentListComponent} from './components/enrollment-list/enrollment-list.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
+import {QuestionCreateComponent} from "./components/question-create/question-create.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},

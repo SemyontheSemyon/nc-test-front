@@ -51,8 +51,40 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <input #correct="ngModel" [(ngModel)]="question.correctAnswer" [value]="answer" minlength="1"
+                <input #correct="ngModel" [(ngModel)]="question.correctAnswer[0]" [value]="answer" minlength="1"
                        name="correctAnswer" required type="radio"/>
+              </div>
+            </div>
+            <input #box (focusout)="question.answers[i] = box.value;" [ngModel]="answer" class="form-control"
+                   name="{{answer}}{{i}}"
+                   style="max-width: 20em;" type="text"/>
+            <div class="input-group-append">
+              <button (click)="removeQuestion(i)" class="btn btn-primary" type="button">X</button>
+            </div>
+            <div *ngIf="f.submitted && correct.invalid">
+              <div *ngIf="(correct.errors.required || correct.errors.minlength) && i !== question.answers.length-1"
+                   class="input-group-text alert-danger">Correct answer is required
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button (click)="addAnswer()" class="btn btn-primary" type="button">New answer</button>
+      </div>
+    </div>
+
+    <div *ngIf="question.type === 'check'" class="row">
+      <div class="col-3">
+        <span class="input-group-text" style="width: 9em"> Answers </span>
+      </div>
+
+      <div class="col">
+        <div *ngFor="let answer of question.answers; index as i">
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input #correct="ngModel" [(ngModel)]="checked[i]" name="correct{{i}}" type="checkbox" [checked]="updateCorrect()"/>
               </div>
             </div>
             <input #box (focusout)="question.answers[i] = box.value;" [ngModel]="answer" class="form-control"
@@ -78,7 +110,7 @@
         <div class="input-group mb-3">
           <span class="input-group-text" style="width: 9em">Correct answer</span>
           <input #box #correct="ngModel" (focusout)="question.answers[0] = box.value"
-                 [(ngModel)]="question.correctAnswer"
+                 [(ngModel)]="question.correctAnswer[0]"
                  class="form-control" name="correctAnswer" required
                  style="max-width: 35em" type="text"/>
           <div *ngIf="f.submitted && correct.invalid">
