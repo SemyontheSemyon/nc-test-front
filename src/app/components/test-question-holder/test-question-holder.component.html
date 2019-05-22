@@ -9,7 +9,7 @@
       <div class="card">
         <div class="card-header">
 
-          <h5 class>Question #{{currentQuestion}}</h5>
+          <h5 class>Question #{{currentQuestion + 1}}</h5>
           <div class="progress">
             <div [ngStyle]="{'width.%':currentQuestion/(questions.length-1)*100}" class="progress-bar"
                  role="progressbar"></div>
@@ -19,7 +19,7 @@
           <p class="card-text"> {{questions[currentQuestion].text}}</p>
           <div *ngIf="questions[currentQuestion].type === 'free'">
             <div class="input-group">
-              <textarea [(ngModel)]="answers[currentQuestion].studentAnswer" class="form-control" name="text"
+              <textarea [(ngModel)]="answers[currentQuestion].studentAnswer[0]" class="form-control" name="text"
                         type="text"></textarea>
             </div>
           </div>
@@ -27,8 +27,19 @@
             <div *ngFor="let answer of questions[currentQuestion].answers">
               <div class="input-group">
                 <div class="input-group-text">
-                  <input [(ngModel)]="answers[currentQuestion].studentAnswer" [value]="answer"
+                  <input [(ngModel)]="answers[currentQuestion].studentAnswer[0]" [value]="answer"
                          name="{{currentQuestion}}" type="radio">
+                </div>
+                <span class="form-control" style="max-width: 30em">{{answer}}</span>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="questions[currentQuestion].type === 'check'">
+            <div *ngFor="let answer of questions[currentQuestion].answers; index as i">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <input [(ngModel)]="checks[currentQuestion][i]" [checked]="updateAnswers()"
+                         name="qwe{{i}}" type="checkbox">
                 </div>
                 <span class="form-control" style="max-width: 30em">{{answer}}</span>
               </div>
