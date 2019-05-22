@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
+  roles: any[] = [];
   private loginInfo: LoginInfo;
 
   constructor(private authService: AuthService, private tokenService: TokenService, private router: Router) {
@@ -45,7 +45,15 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenService.getAuthorities();
-        this.router.navigate(['home']);
+        console.log(this.roles[0]);
+        console.log(this.roles.includes('ROLE_USER'));
+        if (this.roles[0].authority === 'ROLE_USER') {
+          this.router.navigate(['profile']);
+        } else if (this.roles[0].authority === 'ROLE_MANAGER') {
+          this.router.navigate(['admin']);
+        } else {
+          this.router.navigate(['home']);
+        }
       },
       error => {
         this.errorMessage = error.error.message;

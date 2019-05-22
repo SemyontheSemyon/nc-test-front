@@ -5,7 +5,7 @@
 </div>
 <div class="container">
   <p class="text-justify">{{speciality.shortDescription}}</p>
-  <p class="text-justify">{{speciality.fullDescription}}</p>
+  <p class="text-justify" [innerHTML]="speciality.fullDescription"></p>
 
   <div *ngIf="!username">
     <a class="btn btn-primary" role="button" routerLink="/login">Go to login page</a>
