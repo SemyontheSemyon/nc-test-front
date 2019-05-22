@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserTest} from '../../dto/user-test';
 import {TestService} from '../../services/test.service';
-import {ChartDataSets} from 'chart.js';
+import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 
 @Component({
@@ -15,15 +15,12 @@ export class StatisticsComponent implements OnInit {
   specialities: string[] = ['BA', 'QA', 'DEV'];
   currentSpeciality: string;
 
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-  public barChartLabels = [];
-  public barChartData = [{data: [], label: 'DEV'},
+
+  public barChartLabels: Label[] = [];
+  public barChartData: ChartDataSets[]  = [{data: [], label: 'DEV'},
     {data: [], label: 'QA'},
     {data: [], label: 'BA'}];
-  public barChartType = 'bar';
+  public barChartType: ChartType = 'bar';
   public barChartLegend = true;
 
   public lineChartData: ChartDataSets[] = [
@@ -47,7 +44,7 @@ export class StatisticsComponent implements OnInit {
 
       this.barChartLabels = userTests.map(userTest => {
         return userTest.takenAt.toString().slice(0, 10);
-      }).filter((value, index, self) => self.indexOf(value) === index);
+      }).filter((value, index, self) => self.indexOf(value) === index).sort();
 
     });
   }

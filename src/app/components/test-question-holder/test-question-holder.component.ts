@@ -36,9 +36,7 @@ export class TestQuestionHolderComponent implements OnInit {
   }
 
   submitAnswers() {
-    console.log(this.answers);
     this.testService.sendAnswers(this.answers);
-    console.log(this.userInfo);
     this.userInfo.studentStatus = 'TestWritten';
     this.userService.saveUserInfo(this.userInfo).subscribe();
     this.router.navigate(['/test/finish']);
@@ -82,11 +80,9 @@ export class TestQuestionHolderComponent implements OnInit {
       this.testTime.time--;
       this.testTime.mins = Math.trunc(this.testTime.time / 60);
       this.testTime.secs = this.testTime.time % 60;
-      if (this.testTime.time === 0) {
+      if (this.testTime.time === 0 && this.userInfo.studentStatus !== 'TestWritten') {
         this.submitAnswers();
       }
     });
   }
-
-
 }
